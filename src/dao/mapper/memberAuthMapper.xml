@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberAuthDao">
+
+<insert id="insertMemberAuth" parameterType="memberAuth">
+	insert 
+		into memberAuth
+	values (#{m_num},#{authKey},'N')
+</insert>
+
+<update id="updateMemberAuth" parameterType="memberAuth">
+	update memberAuth 
+		set authYN = #{authYN} 
+		where m_num = #{m_num} and authKey = #{authKey}
+
+</update>
+
+<select id="selectOne" resultType="memberAuth" parameterType="int">
+	select * from memberAuth
+	where m_num = #{m_num}
+
+</select> 
+</mapper>

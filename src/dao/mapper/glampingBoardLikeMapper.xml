@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GlampingBoardLikeDao">
+
+<select id="selectOneLike" resultType="Glamping_board_like" parameterType="map">
+
+		select gl_num , m_num,liketo from glamping_board_like
+		where gl_num = #{gl_num}
+		and m_num = #{m_num}
+
+</select>
+
+<select id="selectLikeCount" parameterType="int" resultType="int">
+
+		select NVL(count(*),0) as likeCount
+		  from glamping_board_like
+		 where gl_num = #{gl_num} and LIKETO = 1
+	
+</select>
+
+<update id="updateLike" parameterType="Map">
+
+	update glamping_board_like
+<if test="LIKETO == 1">set liketo = 0</if>
+<if test="LIKETO == 0">set liketo = 1</if>
+where gl_num = #{gl_num} and m_num =#{m_num}
+</update>
+
+<insert id="insertLike" parameterType="Map">
+insert into 	
+	glamping_board_like  values(
+					gbl_seq.nextVal,
+					#{gl_num},
+					#{m_num},
+					1
+						)
+</insert>
+
+</mapper>

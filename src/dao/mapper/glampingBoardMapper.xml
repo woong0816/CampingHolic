@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GlampingBoardDao">
+
+<insert id="insertGlBoard" parameterType="GlampingBoard">
+	<selectKey keyProperty="gl_num" resultType="int">
+			select glamping_seq.currval as GL_NUM from dual	
+	</selectKey>
+	insert into 
+		glamping_board values ( glamping_seq.nextVal,
+								#{gl_title},
+								#{gl_content},
+								#{gl_address},
+								0,
+								#{m_num},
+								sysdate,
+								'N'
+							)
+</insert>
+<select id="selectList" resultType="map" parameterType="Map">
+
+	select * from
+   ( select rownum as rnum, b.*
+    from(
+        select gl_num,m_num,gl_title,gl_address,readcount,writedate,gli_imgfilename,likecount,nickname
+          from 
+            (select gl.gl_num ,gl.m_num,gl.gl_title, gl.gl_address,gl.readcount,gl.writedate,nvl(gli.gli_imgfilename,'')gli_imgfilename , nvl(grl.liketo,0)as likecount,nvl(m.nickname,'')nickname
+                  from glamping_board gl
+                left join glamping_imgfile gli on gl.gl_num = gli.gl_num and gli.gli_subnume = 1
+                left join member m on gl.m_num = m.m_num
+                left join (
+                            select gl_num , count(*) liketo from glamping_board_like
+                            where liketo = 1 
+                            group by gl_num
+                          )grl on gl.gl_num = grl.gl_num where delyn = 'N'
+                <if test="GL_TITLE">and gl_title like '%${GL_TITLE}%'</if>
+				<if test="GL_ADDRESS!=null">and gl_address like '%${GL_ADDRESS}%'</if>
+				<if test="M_NUM!=null">and m_num like '%${M_NUM}%'</if>
+				<if test="GL_CONTENT!=null">and gl_content like '%${GL_CONTENT}%'</if>
+				<if test="type==0">and 1=1 </if>
+                          
+            ) ORDER BY gl_num desc
+        ) b
+    )where rnum between #{firstRow} and #{endRow}
+
+</select>
+
+<select id="selectDatailOne" resultType="Map" parameterType="int">
+	select gl.gl_num , gl.gl_title, gl.gl_content , gl.gl_address ,gl.writedate, gbi.liketo
+	    from glamping_board gl,
+	    glamping_board_like gbi
+	   where  gl.gl_num = #{gl_num} 
+	
+</select>
+
+<select id="selectOne" resultType="map" parameterType="int">
+select gl.*,m.nickname
+	from glamping_board gl,
+    member m 
+where m.m_num = gl.m_num and  gl_num = #{gl_num}
+
+
+</select>
+
+
+<update id="updateGlBoard" parameterType="GlampingBoard">
+		update glamping_board
+		 set gl_title = #{gl_title},
+		 	 gl_content = #{gl_content},
+		 	 gl_address = #{gl_address}
+		 where gl_num = #{gl_num}
+
+</update>
+
+<delete id="deleteGlBoard" parameterType="int">
+		update glamping_board
+		set delyn = 'Y'
+		where gl_num = #{gl_num}
+	
+
+</delete>
+<select id="selectBoardCount" resultType="int" parameterType="Map">
+			select count(*) from glamping_board  gb
+				left join 
+				member m on gb.m_num = m.m_num
+				where gb.delyn = 'N'
+			<if test="GL_TITLE!=null">and gl_title like '%${GR_TITLE}%'</if>
+			<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%' </if>
+			<if test="GL_ADDRESS!=null">and gl_address like '%${GR_ADDRESS}%'</if>
+			<if test="GL_CONTENT!=null">and gl_content like '%${GR_CONTENT}%'</if>
+
+</select>
+
+<select id="selectReadCount" resultType="Map" parameterType="Map">
+select * from
+	(select rownum as rnum, b.* from
+		(select readCount as read, gl.gl_num, gl.gl_title, gl.gl_content, gl.gl_address, gl.readCount , gl.m_num,gli.gli_imgfilename,NVL(liketo,0)likeCount
+	    from glamping_board gl
+		    left join glamping_imgfile gli on gl.gl_num = gli.gl_num and gli.gli_subnume =1  
+		    left join(select gl_num, count(*)liketo from glamping_board_like where liketo = 1 group by gl_num)gbl on gl.gl_num = gbl.gl_num
+	    where delyn = 'N'
+	   			   <if test="GL_TITLE">and gl_title like '%${GL_TITLE}%'</if>
+					<if test="GL_ADDRESS!=null">and gl_address like '%${GL_ADDRESS}%'</if>
+					<if test="M_NUM!=null">and m_num like '%${M_NUM}%'</if>
+					<if test="GL_CONTENT!=null">and gl_content like '%${GL_CONTENT}%'</if>
+					<if test="type==0">and 1=1 </if>
+
+	   order by read desc
+	   )b
+	)
+ where rnum BETWEEN  #{firstRow} and #{endRow}
+
+
+</select>
+
+<select id="selectLikeCount" resultType="Map" parameterType="Map">
+	select * from
+		(select rownum as rnum, b.* from
+			(select readCount as read, gl.gl_num, gl.gl_title, gl.gl_content, gl.gl_address, gl.readCount , gl.m_num,gli.gli_imgfilename,NVL(liketo,0)as likeCount
+		    from glamping_board gl
+			    left join glamping_imgfile gli on gl.gl_num = gli.gl_num and gli.gli_subnume =1  
+			    left join(select gl_num, count(*)liketo from glamping_board_like where liketo = 1 group by gl_num)gbl on gl.gl_num = gbl.gl_num
+		    where delyn = 'N'
+		   	   <if test="GL_TITLE">and gl_title like '%${GL_TITLE}%'</if>
+				<if test="GL_ADDRESS!=null">and gl_address like '%${GL_ADDRESS}%'</if>
+				<if test="M_NUM!=null">and m_num like '%${M_NUM}%'</if>
+				<if test="GL_CONTENT!=null">and gl_content like '%${GL_CONTENT}%'</if>
+				<if test="type==0">and 1=1 </if>
+		   order by likeCount desc
+		   )b
+		) 
+	where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+<update id="readCountUpdate" parameterType="int">
+	update glamping_board
+		set readcount = readcount + 1
+	where gl_num = #{gl_num}
+
+</update>
+
+
+</mapper>

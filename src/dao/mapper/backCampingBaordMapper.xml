@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BackCampingBoardDao">
+
+<insert id="insertBackCampingBoard" parameterType="BackCampingBoard">
+
+		<selectKey keyProperty="bc_num" resultType="int">
+			select backCamping_seq.currval as BC_NUM from dual	
+		</selectKey>
+			insert into BACKCAMPING_BOARD values ( backCamping_seq.nextVal,
+								#{bc_title},
+								#{bc_content},
+								#{bc_address},
+								0,
+								#{m_num},
+								sysdate,
+								'N'
+									)
+</insert>
+<select id="selectList" resultType="Map" parameterType="Map">
+	 select * from
+        (select rownum as rnum, b.*
+            from (
+                select bc_num,m_num,bc_title, bc_address, readCount,writedate,bci_imgfileName,likecount,nickname
+                    from  
+                        (select bc.bc_num ,bc.m_num,bc.bc_title, bc.bc_address,bc.readcount,bc.writedate,nvl(bci.bci_imgfilename,'')bci_imgfilename , nvl(bbi.liketo,0)as likecount,nvl(m.nickname,'')nickname
+                              from backcamping_board bc
+                            left join backcamping_imgfile bci on bc.bc_num = bci.bc_num and bci.bci_subnum = 1
+                            left join member m on bc.m_num = m.m_num
+                            left join (
+                                        select bc_num , count(*) liketo from backcamping_board_like
+                                        where liketo = 1 
+                                        group by bc_num
+                                      ) bbi on bc.bc_num = bbi.bc_num where delyn = 'N'
+                    <if test="BC_TITLE!=null">and bc_title like '%${BC_TITLE}%'</if>
+					<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+					<if test="BC_ADDRESS!=null">and bc_address like '%${BC_address}%'</if>
+					<if test="BC_CONTENT!=null">and bc_content like '%${BC_CONTENT}%'</if>
+					<if test="type==0">and 1=1</if>	 
+                        ) ORDER BY bc_num desc
+                 )b
+        )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<select id="selectOne" resultType="map" parameterType="int">
+	select bc.*,m.nickname
+		from BACKCAMPING_BOARD bc,
+        member m
+	where m.m_num = bc.m_num and  bc_num = #{bc_num}
+</select>
+
+<update id="updateBackCampingBoard" parameterType="BackCampingBoard">
+	update backcamping_board
+		set bc_title = #{bc_title},
+			bc_content = #{bc_content},
+			bc_address = #{bc_address},
+			writedate = sysdate
+	where bc_num = #{bc_num}
+</update>
+
+<update id="deleteBackCampingBoard" parameterType="int">
+	update backcamping_board
+		set    delyn = 'Y'
+	where bc_num = #{bc_num}
+</update>
+
+<select id="selectBoardCount" resultType="int" parameterType="Map">
+	select count(*) from backCamping_board bc
+		left join
+		member m on bc.m_num = m.m_num
+		where delyn = 'N'
+	<if test="BC_TITLE!=null">and bc_title like '%${BC_TITLE}%'</if>
+	<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+	<if test="BC_ADDRESS!=null">and bc_address like '%${BC_address}%'</if>
+	<if test="BC_CONTENT!=null">and bc_content like '%${BC_CONTENT}%'</if>	 
+</select>
+
+<select id="selectReadCount" resultType="map" parameterType="map">
+select * from
+        (select rownum as rnum, b.*
+            from (
+                select bc_num,m_num,bc_title, bc_address,readCount,writedate,bci_imgfileName,nickname,likecount
+                    from  
+                        (select bc.bc_num ,bc.m_num,bc.bc_title, bc.bc_address,bc.readCount,bc.writedate,nvl(bci.bci_imgfilename,'')bci_imgfilename , nvl(m.nickname,'')nickname,nvl(bbi.liketo,0)as likecount
+                              from backcamping_board bc
+                            left join backcamping_imgfile bci on bc.bc_num = bci.bc_num and bci.bci_subnum = 1
+                            left join member m on bc.m_num = m.m_num
+                            left join (
+                                        select bc_num , count(*) liketo from backcamping_board_like
+                                        where liketo = 1 
+                                        group by bc_num
+                                      ) bbi on bc.bc_num = bbi.bc_num where delyn = 'N'
+                    <if test="BC_TITLE!=null">and bc_title like '%${BC_TITLE}%'</if>
+					<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+					<if test="BC_ADDRESS!=null">and bc_address like '%${BC_address}%'</if>
+					<if test="BC_CONTENT!=null">and bc_content like '%${BC_CONTENT}%'</if>
+					<if test="type==0">and 1=1</if>              
+                        ) ORDER BY readCount desc
+                    )b
+            )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<select id="selectLikeCount" resultType="map" parameterType="map">
+
+    select * from
+        (select rownum as rnum, b.*
+            from (
+                select bc_num,m_num,bc_title, bc_address,readcount,writedate,bci_imgfileName,nickname,likecount
+                    from  
+                        (select bc.bc_num ,bc.m_num,bc.bc_title, bc.bc_address,bc.readcount, bc.writedate,nvl(bci.bci_imgfilename,'')bci_imgfilename , nvl(m.nickname,'')nickname,nvl(bbi.liketo,0)as likecount
+                              from backcamping_board bc
+                            left join backcamping_imgfile bci on bc.bc_num = bci.bc_num and bci.bci_subnum = 1
+                            left join member m on bc.m_num = m.m_num
+                            left join (
+                                        select bc_num , count(*) liketo from backcamping_board_like
+                                        where liketo = 1 
+                                        group by bc_num
+                                      ) bbi on bc.bc_num = bbi.bc_num where delyn = 'N'
+		                   	<if test="BC_TITLE!=null">and bc_title like '%${BC_TITLE}%'</if>
+							<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+							<if test="BC_ADDRESS!=null">and bc_address like '%${BC_address}%'</if>
+							<if test="BC_CONTENT!=null">and bc_content like '%${BC_CONTENT}%'</if>
+							<if test="type==0">and 1=1</if>  
+                        ) ORDER BY likecount desc
+                    )b
+            )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<update id="readCountUpdate" parameterType="int">
+	update backcamping_board
+	 set readcount = readcount + 1 
+	 where bc_num = #{bc_num}
+</update>
+
+</mapper>

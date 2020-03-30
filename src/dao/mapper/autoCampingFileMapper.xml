@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AutoCampingFileDao">
+
+<insert id="insertAutoCampingFile" parameterType="autocamping_imgfile">
+
+	insert 
+		into autocamping_imgfile 
+			values (autoCampingImg_seq.nextVal,
+					#{ac_num},
+					#{aci_subNume},
+					#{aci_imgFileName},
+					sysdate
+					)
+</insert>
+
+<delete id="deleteAutoCampingFile" parameterType="int">
+		delete from autocamping_imgfile
+			where ac_num = #{ac_num}
+</delete>
+<select id="selectImgList" resultType="map" parameterType="int">
+	select aci_imgfilename from autocamping_imgfile
+		where ac_num = #{ac_num}
+	order by aci_subnume
+</select>
+
+
+</mapper>

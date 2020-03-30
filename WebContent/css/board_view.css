@@ -1,0 +1,46 @@
+.container{
+margin: 0 auto;
+width: 1400px;
+}
+.checkHeart{
+	text-decoration:none;
+	font-size: 50px;
+	color:#FE2E2E;
+}
+.checkHeart1{
+	text-decoration:  none;
+}
+.address_box{
+	height: 57px;
+	margin-top: 15px;
+	float: right;
+	width: 702px;
+	text-align: center;
+}
+#title{
+	font-size: 50px;
+	margin-left: 50px;
+}
+.write_na{
+	text-align:left;
+	margin-left: 60px;
+    margin-top: 5px;
+}
+.write_date{
+	width: 1300px;
+    text-align: right;
+    margin-top: 3px;
+}
+.container-1{
+	width: 70%;
+    text-align: center;
+    margin: 0 auto;
+}
+.underButton{
+	text-align: center;
+	margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+	
+    

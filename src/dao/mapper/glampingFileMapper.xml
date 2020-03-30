@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GlampingFileDao">
+<insert id="insertglampingImgFile" parameterType="Glamping_ImgFile" >
+	insert
+		 into glamping_imgFile values ( glampingImg_seq.nextVal,
+		 								#{gl_num},
+		 								#{gli_subnume},
+		 								#{gli_imgFileName},
+		 								sysdate
+		 								)
+
+</insert>
+
+<delete id="deleteglampingImgFIle" parameterType="int">
+	delete from glamping_imgfile
+		where gl_num = #{gl_num}
+</delete>
+
+<select id="selectThumbnail" parameterType="int" resultType="String">
+	select i.gli_imgfilename from
+	( select rownum as rnum, i.*from
+	        ( select gli_imgfilename from glamping_imgfile where gl_num = #{gl_num}
+	            order by gli_subnume
+	            ) i
+	        )i
+	    where rnum  = 1
+
+</select>
+
+<select id="selectImgList" resultType="map" parameterType="int">
+	select gli_imgFileName from glamping_imgfile
+		where gl_num = #{gl_num}
+	order by gli_subnume
+</select>
+
+</mapper>

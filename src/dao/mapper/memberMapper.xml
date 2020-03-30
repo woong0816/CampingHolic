@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MemberDao">
+
+<insert id="insertMember" parameterType="member">
+	<selectKey keyProperty="m_num" resultType="int">
+			select member_seq.currval as M_NUM from dual	
+	</selectKey>
+
+	insert 
+		  into member
+		values
+		(member_seq.nextval,#{email},#{name},#{nickName},#{password},'2',#{gender},'4','6',sysdate)
+</insert>
+
+<select id="loginMember" parameterType="String" resultType="member">
+	select m.email, m.password,
+		   a.authYN
+		  from member m,
+		  	   memberauth a
+		  	where m.m_num=a.m_num(+) and email = #{email}
+</select>
+
+<select id="selectOneMember" parameterType="String" resultType="Member">
+	select m_num , nickname from member
+		where email = #{email}
+</select>
+
+<select id="checkEmail" parameterType="String" resultType="Member">
+		select email from member
+			where email = #{email}
+</select>
+<select id="nickCheck" parameterType="String" resultType="member">
+		select nickname from member
+			where  nickName = #{nickName}
+</select>
+<select id="naverIdCheck" parameterType="String" resultType="member">
+	select pin,m_num from member
+		where email = #{email}
+</select>
+
+<select id="selectOne" parameterType="String" resultType="Member">
+	select * from member where m_num = #{m_num}
+</select>
+<select id="selectMemberInfo" parameterType="String" resultType="Map">
+	select * from member where nickName = #{nickName} 
+</select>
+<update id="pwModify" parameterType="Map">
+	update member set password = #{password} where m_num = #{m_num}
+	
+</update>
+
+</mapper>

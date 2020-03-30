@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.MessageDao">
+
+<insert id="insertMessage" parameterType="map">
+	<selectKey keyProperty="MSG_num" order="BEFORE" resultType="int"> select msg_seq.nextval from dual </selectKey>
+	insert into message 
+		values ( #{MSG_num},#{send_M_num},#{recv_M_num},#{MSG_title},#{MSG_content},'N','N','N',sysdate, 'N' 
+		)	
+</insert>
+
+<select id="myreceiveMessage" resultType="Map" parameterType="Map">
+select * from	
+	(select rownum as rnum, n.* 
+	  from (select m.msg_num, mb.nickname ,m.send_m_num, m.msg_title, m.msg_content, to_char(m.msg_writedate,'RRRR/MM/DD') as pointdate
+		from member mb,
+			(select * from message where recv_m_num=#{m_num}) m
+		where mb.m_num = m.send_m_num order by msg_num desc 
+	) n
+) where rnum between #{firstRow} and #{endRow}
+</select>
+
+<select id="receiveCount" parameterType="int" resultType="int">
+	select count(*) from message where recv_m_num = #{m_num}
+</select>
+
+<select id="sendCount" parameterType="int" resultType="int">
+	select count(*) from message where send_m_num = #{m_num}
+</select>
+
+<select id="mySendMessage" resultType="Map" parameterType="Map">
+select * from	
+	(select rownum as rnum, n.* 
+	  from (select m.msg_num, mb.nickname ,m.recv_m_num, m.msg_title, m.msg_content, to_char(m.msg_writedate,'RRRR/MM/DD') as pointdate,m.chkyn
+		from member mb,
+			(select * from message where send_m_num=#{m_num}) m
+		where mb.m_num = m.send_m_num order by msg_num desc 
+	) n
+) where rnum between #{firstRow} and #{endRow}
+</select>
+
+<update id="readCheck" parameterType="int">
+	update message set chkyn = 'Y' where msg_num = #{msg_num}
+</update>
+
+<select id="nickCheck" parameterType="String" resultType="int">
+	select m_num from member where nickname = #{nickName}
+</select>
+
+</mapper>

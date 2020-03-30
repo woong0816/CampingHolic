@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AutoCampingBoardDao">
+
+<insert id="insertAutoCampingBoard" parameterType="AutoCampingBoard">
+	<selectKey keyProperty="ac_num" resultType="int">
+		select ac_board_seq.currval as AC_NUM from dual
+	</selectKey>
+	insert into 
+		autoCamping_board 
+			values ( ac_board_seq.nextVal,
+					#{ac_title},
+					#{ac_content},
+					#{ac_address},
+					0,
+					#{m_num},
+					sysdate,
+					'N'
+					)
+</insert>
+
+<select id="selectList" resultType="map" parameterType="map">
+	select * from
+        (select rownum as rnum, b.*
+            from (
+                select ac_num,m_num,ac_title, ac_address, readCount,writedate,aci_imgfileName,likecount,nickname
+                    from  
+                        (select ac.ac_num ,ac.m_num,ac.ac_title, ac.ac_address,ac.readcount,ac.writedate,nvl(aci.aci_imgfilename,'')aci_imgfilename , nvl(abl.liketo,0)as likecount,nvl(m.nickname,'')nickname
+                              from autocamping_board ac
+                            left join autocamping_imgfile aci on ac.ac_num = aci.ac_num and aci.aci_subnume = 1
+                            left join member m on ac.m_num = m.m_num
+                            left join (
+                                        select ac_num , count(*) liketo from autocamping_board_like
+                                        where liketo = 1 
+                                        group by ac_num
+                                      ) abl on ac.ac_num = abl.ac_num where delyn = 'N'
+                    <if test="AC_TITLE!=null">and ac_title like '%${AC_TITLE}%'</if>
+					<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+					<if test="AC_ADDRESS!=null">and ac_address like '%${AC_address}%'</if>
+					<if test="AC_CONTENT!=null">and ac_content like '%${AC_CONTENT}%'</if>
+					<if test="type==0">and 1=1</if>
+                        ) ORDER BY ac_num desc
+                 )b
+        )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<select id="selectOne" resultType="map" parameterType="int">
+	select ac.ac_num, ac.ac_title, ac.ac_address, ac.readCount, ac.ac_content, ac.m_num, m.nickname,writedate
+		from autoCamping_board ac,
+        member m
+	where m.m_num = ac.m_num and ac_num = #{ac_num}
+</select>
+
+<update id="updateAutoCampingBoard" parameterType="AutoCampingBoard">
+	update autoCamping_board
+		set ac_title = #{ac_title},
+			ac_content = #{ac_content},
+			ac_address = #{ac_address},
+			writeDate = sysdate
+		where ac_num = #{ac_num}
+</update>
+
+<update id="deleteAutoCampingBoard" parameterType="int">
+	update autoCamping_board
+		set delyn = 'Y'
+	where ac_num = #{ac_num} 
+</update>
+
+<select id="selectBoardCount" resultType="int" parameterType="map">
+	select count(*) from autoCamping_board ac
+		left join
+		member m on ac.m_num = m.m_num
+		where delyn = 'N'
+	<if test="AC_TITLE!=null">and ac_title like '%${AC_TITLE}%'</if>
+	<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+	<if test="AC_ADDRESS!=null">and ac_address like '%${AC_address}%'</if>
+	<if test="AC_CONTENT!=null">and ac_content like '%${AC_CONTENT}%'</if>
+
+</select>
+
+<select id="selectReadCount" resultType="map" parameterType="map">
+	select * from
+        (select rownum as rnum, b.*
+            from (
+                select ac_num,m_num,ac_title, ac_address, writedate,aci_imgfileName,likecount,nickname,readCount
+                    from  
+                        (select ac.ac_num ,ac.m_num,ac.ac_title, ac.ac_address,ac.readCount ,ac.writedate,nvl(aci.aci_imgfilename,'')aci_imgfilename , nvl(abl.liketo,0)as likecount,nvl(m.nickname,'')nickname
+                              from autocamping_board ac
+                            left join autocamping_imgfile aci on ac.ac_num = aci.ac_num and aci.aci_subnume = 1
+                            left join member m on ac.m_num = m.m_num
+                            left join (
+                                        select ac_num , count(*) liketo from autocamping_board_like
+                                        where liketo = 1 
+                                        group by ac_num
+                                      ) abl on ac.ac_num = abl.ac_num where delyn = 'N'
+                    <if test="AC_TITLE!=null">and ac_title like '%${AC_TITLE}%'</if>
+					<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+					<if test="AC_ADDRESS!=null">and ac_address like '%${AC_address}%'</if>
+					<if test="AC_CONTENT!=null">and ac_content like '%${AC_CONTENT}%'</if>
+					<if test="type==0">and 1=1</if>
+                        ) ORDER BY readCount desc
+                 )b
+        )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<select id="selectLikeCount" resultType="map" parameterType="map">
+	select * from
+        (select rownum as rnum, b.*
+            from (
+                select ac_num,m_num,ac_title, ac_address, writedate,aci_imgfileName,likecount,nickname,readCount
+                    from  
+                        (select ac.ac_num ,ac.m_num,ac.ac_title, ac.ac_address,ac.readCount ,ac.writedate,nvl(aci.aci_imgfilename,'')aci_imgfilename , nvl(abl.liketo,0)as likecount,nvl(m.nickname,'')nickname
+                              from autocamping_board ac
+                            left join autocamping_imgfile aci on ac.ac_num = aci.ac_num and aci.aci_subnume = 1
+                            left join member m on ac.m_num = m.m_num
+                            left join (
+                                        select ac_num , count(*) liketo from autocamping_board_like
+                                        where liketo = 1 
+                                        group by ac_num
+                                      ) abl on ac.ac_num = abl.ac_num where delyn = 'N'
+                    <if test="AC_TITLE!=null">and ac_title like '%${AC_TITLE}%'</if>
+					<if test="NICKNAME!=null">and NICKNAME like '%${NICKNAME}%'</if>
+					<if test="AC_ADDRESS!=null">and ac_address like '%${AC_address}%'</if>
+					<if test="AC_CONTENT!=null">and ac_content like '%${AC_CONTENT}%'</if>
+					<if test="type==0">and 1=1</if>
+                        ) ORDER BY likecount desc
+                 )b
+        )where rnum BETWEEN #{firstRow} and #{endRow}
+</select>
+
+<update id="readCountUpdate" parameterType="int">
+	update autoCamping_board 
+		set readcount = readcount + 1 
+		where ac_num = #{ac_num}
+
+</update>
+
+</mapper>

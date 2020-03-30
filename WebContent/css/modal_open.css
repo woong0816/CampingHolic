@@ -1,0 +1,123 @@
+ .modal1  {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+.modal2 {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+        /* Modal Content/Box */
+.modal-content1 {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888;
+width: 17%; /* Could be more or less, depending on screen size */                          
+}
+.modal-content2 {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888;
+width: 22%; /* Could be more or less, depending on screen size */                          
+}
+        /* The Close Button */
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close2 {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+.close2:hover,
+.close2:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+.header_ul{
+display: flex;
+flex-direction: row;
+width: 1360px;
+margin: 0 auto;
+padding : 0;
+list-style-type: none;
+}
+.nav-item{
+padding : 15px;
+} 
+/* .loginButton{
+width: 590px;
+float: right;
+margin-bottom: 10px;
+display: flex;
+} */
+.member-info{
+float: right;
+margin-bottom: 10px;
+display: flex;
+margin-right: 10px;
+text-align: right;
+width: 28%;
+}
+.logoutForm{
+width: 820px;
+text-align: center;
+}
+.nav-item{
+margin-right: 35px;
+}
+.nav-main{
+	margin-right: 600px;
+	font-size: 40px;
+	cursor: pointer;
+}
+.header_div{
+width: 1400px;
+text-align: center;
+margin: 0 auto;
+}
+.my_btn{margin-top: 18px;}
+.in_li{margin: auto;}
+.category_ul{
+margin-top: 15px;
+margin-bottom: 15px;
+width : 1400px;
+margin: 0 auto;
+padding: 0px;
+text-align: center;
+}
+.category_item{
+	margin-right: 70px;
+	list-style-type: none;
+	display: inline-block;
+}
+
+      

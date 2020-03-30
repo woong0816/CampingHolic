@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AutoCampingBoardReplyDao"> 
+
+<insert id="insertReply" parameterType="map">
+	insert into autocamping_board_reply
+		values ( ac_reply_seq.nextVal,
+				#{ac_num},
+				#{content},
+				#{m_num},
+				sysdate,
+				'N'
+				)
+</insert>
+
+<select id="getReplyList" resultType="map" parameterType="int">
+	select abr.abr_num, abr.content, abr.m_num, abr.writedate,m.nickname
+		from autocamping_board_reply abr,
+		member m
+	where m.m_num = abr.m_num and abr.ac_num = #{ac_num} and delyn = 'N'
+	ORDER BY abr.abr_num
+</select>
+
+<update id="deleteReply" parameterType="map">
+	update autocamping_board_reply
+		set delyn = 'Y'
+	where abr_num = #{abr_num}
+	and ac_num = #{ac_num}
+	and m_num = #{m_num}
+
+</update>
+
+</mapper>

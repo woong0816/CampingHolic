@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:component-scan base-package="controller"/>
+		
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<bean id = "viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+				<!-- max upload size in bytes -->
+				<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+				<!-- max size of file in memory (in bytes) -->
+				<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+			</bean>
+			
+			
+	<websocket:message-broker application-destination-prefix="/message/client">
+		<websocket:stomp-endpoint path="/message/chat">
+			<websocket:sockjs></websocket:sockjs>
+		</websocket:stomp-endpoint>
+		<websocket:simple-broker prefix="/message/topic"/>
+	</websocket:message-broker>
+	
+	<mvc:resources mapping="/CampingHolic/*" location="file:///D:/server/image/data/"/>
+	 
+	 <mvc:interceptors>
+		<mvc:interceptor>
+				<mvc:mapping path="/glamping/imgUpload"/>
+				<mvc:mapping path="/glamping/glampingWrite"/>
+				<mvc:mapping path="/glamping/glampingModify"/>
+				<mvc:mapping path="/glamping/checkLike"/>
+				<mvc:mapping path="/glampingReply/replyInsert"/>				
+				<mvc:mapping path="/backCamping/checkLike"/>
+				<mvc:mapping path="/backCampingReply/replyInsert"/>
+				<mvc:mapping path="/member/**"/>
+				<mvc:mapping path="/message/**"/>
+				
+		 <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	   </bean>
+		</mvc:interceptor>
+		</mvc:interceptors> 
+</beans>	
+	
+	
+
+

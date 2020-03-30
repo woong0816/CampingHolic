@@ -1,0 +1,51 @@
+#container{
+	width: 1050px;
+	height: 1000px;
+	margin: 0 auto;
+}
+
+#myrecvbox, #mysendbox{
+	width: 800px;
+    height: 700px;
+    float: right;
+    margin-top: 60px;
+    margin-right: 235px;
+}
+
+table{
+	margin: 0 auto;
+	border: 1px solid #F8E0E6;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th{
+	text-align: center;
+	background-color: #F8E0E6;
+	height: 30px;
+}
+
+td{
+	text-align: center;
+	border: 1px solid #F8E0E6;
+	height: 30px;
+}
+
+.content{
+	height: 80px;
+}
+
+
+#writeMsg{
+	margin-right: 25px;
+	float: right;
+}
+
+#paging{
+	text-align: center;
+}
+.message_sidebar{
+	float: left;
+    margin-top: 170px;
+    margin-left: 125px;
+}

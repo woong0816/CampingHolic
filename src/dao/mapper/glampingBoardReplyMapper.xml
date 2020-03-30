@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GlampingBoardReplyDao">
+
+<insert id="insertReply" parameterType="Glamping_board_reply">
+	insert into glamping_board_reply values(
+							gbr_seq.nextVal,
+							#{gl_num},
+							#{content},
+							#{m_num},
+							sysdate,
+							'N'
+
+	)
+</insert>
+
+<select id="selectReplyList" resultType="Map" parameterType="int">
+			select gbr.gbr_num, gbr.content,m.nickname, gbr.writedate, gbr.m_num from 
+				glamping_board_reply gbr,
+				member m
+			where m.m_num = gbr.m_num(+) and gl_num = #{gl_num} and delyn = 'N'
+			ORDER by gbr_num
+
+</select>
+
+<update id="deleteReply" parameterType="Glamping_board_reply">
+		update Glamping_board_reply 
+			set delyn  = 'Y'
+			where gbr_num = #{gbr_num}
+			and m_num = #{m_num}
+			and gl_num = #{gl_num}
+</update>
+
+
+
+
+
+
+
+
+
+
+</mapper>

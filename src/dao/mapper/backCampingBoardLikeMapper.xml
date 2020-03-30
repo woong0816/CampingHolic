@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BackCampingBoardLikeDao"> 
+
+<select id="selecOneLike" parameterType="map" resultType="int">
+		select count(bbl.liketo) liketo from backCamping_board_like bbl
+			where bc_num = #{bc_num}
+		and m_num = #{m_num}
+
+</select>
+
+<select id="selectLikeCount" resultType="int" parameterType="int">
+	select NVL(count(*),0) as likeCount
+		from backCamping_board_like
+		where bc_num = #{bc_num} and liketo = 1
+</select>
+
+<insert id="likeCheck">
+	insert into backCamping_board_like values 
+						(	bc_like_seq.nextVal,
+							#{bc_num},
+							#{m_num},
+							1
+						)
+</insert>
+
+<update id="updataLike" parameterType="map">
+	update backCamping_board_like
+	<if test="LIKETO == 0">set liketo = 1</if>
+	<if test="LIKETO == 1">set liketo = 0</if>
+	where bc_num = #{bc_num} and m_num = #{m_num}
+
+</update>
+
+<select id="LikeNo" parameterType="map" resultType="int">
+ 		select NVL(bbl.liketo,0) liketo from backCamping_board_like bbl
+       		 where bc_num = #{bc_num}
+		and m_num = #{m_num}
+
+</select>
+
+
+</mapper>
