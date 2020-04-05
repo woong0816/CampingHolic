@@ -109,15 +109,27 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-
+		<!-- 	
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<scope>provieded</scope>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<scope>provieded</scope>
+				<version>2.1</version>
+			</dependency> -->
 		<!-- oracle dependency -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>ojdbc</groupId>
 			<artifactId>ojdbc</artifactId>
 			<version>6</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
-		</dependency> -->
+			<systemPath>${project.basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
 		
 
 		<!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
