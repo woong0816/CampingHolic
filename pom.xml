@@ -109,7 +109,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		<!-- 	
+		
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
@@ -121,14 +121,14 @@
 				<artifactId>jsp-api</artifactId>
 				<scope>provieded</scope>
 				<version>2.1</version>
-			</dependency> -->
+			</dependency> 
 		<!-- oracle dependency -->
 		<dependency>
 			<groupId>ojdbc</groupId>
 			<artifactId>ojdbc</artifactId>
 			<version>6</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>
 		
 
