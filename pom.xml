@@ -109,7 +109,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		
+		<!-- 
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
@@ -121,7 +121,7 @@
 				<artifactId>jsp-api</artifactId>
 				<scope>provieded</scope>
 				<version>2.1</version>
-			</dependency> 
+			</dependency>  -->
 		<!-- oracle dependency -->
 		<dependency>
 			<groupId>ojdbc</groupId>
