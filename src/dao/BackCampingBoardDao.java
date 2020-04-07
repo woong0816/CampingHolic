@@ -3,8 +3,6 @@ package dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.tribes.tipis.AbstractReplicatedMap.MapOwner;
-
 import model.BackCampingBoard;
 
 public interface BackCampingBoardDao {
