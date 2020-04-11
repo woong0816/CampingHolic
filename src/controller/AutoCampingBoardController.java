@@ -189,8 +189,8 @@ public class AutoCampingBoardController {
 		resultMap.put("imgWidth", bi.getWidth());
 		resultMap.put("imgHeight", bi.getHeight());
 
-		//System.out.println(resultMap);
-
+		System.out.println(resultMap);
+			
 		return resultMap;
 
 	}
