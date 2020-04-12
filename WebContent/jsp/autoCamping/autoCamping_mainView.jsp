@@ -78,7 +78,7 @@ $(function(){
 				<div class="title_dv">
 					<a onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingBoardList.AC_NUM}'">${autoCampingBoardList.AC_TITLE}</a>
 				</div>
-				<div><img src="${pagecontext.request.contextpath}${autoCampingBoardList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingBoardList.AC_NUM}'" 
+				<div><img src="${contextPath}${autoCampingBoardList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingBoardList.AC_NUM}'" 
 				class="a_img" style= "width: 300px; height:300px;"></div>
 				<span style="color: #DF0101;">♥</span><small id="like">좋아요${autoCampingBoardList.LIKECOUNT}</small>
 				<div id="readCount_no"><span style="font-size:15px;">조회수&nbsp;</span>
