@@ -39,7 +39,7 @@ import service.AutoCampingService;
 @RequestMapping("/autoCamping")
 public class AutoCampingBoardController {
 	private static final String FILE2 = "file";
-	private static final String UPLOADIMGPATH = "/home/ubuntu/download";
+	private static final String UPLOADIMGPATH = "/home/ubuntu/download/";
 	
 	@Autowired
 	AutoCampingService autoCampingService;
