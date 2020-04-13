@@ -71,6 +71,8 @@ $(function(){
 			contentType : false,
 			processData : false,
 				success : function(result){
+					console.log(result);
+					console.log("파일 네임"+result.fileName);
 					var $summernote = $('#summernote');
 					if (result.imgWidth > 780) {
 						var changeWidth = 780;
@@ -80,7 +82,7 @@ $(function(){
 						
 						var img = $("<img src='${contextPath}/home/ubuntu/download/" + result.fileName+"' style='width: " + changeWidth + "px; height: " + changeHeight + "px;''>")[0];
 					} else {
-						var img = $("<img src='${contextPath}/upload/" + result.fileName+"'>")[0];
+						var img = $("<img src='${contextPath}/home/ubuntu/download/" + result.fileName+"'>")[0];
 						
 					}
 					$summernote.summernote('insertNode', img);

@@ -156,7 +156,7 @@ public class AutoCampingBoardController {
 	
 	@PostMapping(value="/imgUpload")
 	@ResponseBody
-	public Map<String, Object> autoCampingImgUpload(MultipartHttpServletRequest request) {
+	public Map<String, Object> autoCampingImgUpload(MultipartHttpServletRequest request) throws IOException {
 
 		MultiValueMap<String, MultipartFile> multiFileMap = request.getMultiFileMap();
 		List<MultipartFile> list = multiFileMap.get(FILE2); 
@@ -172,33 +172,24 @@ public class AutoCampingBoardController {
 		//System.out.println(fullName);
 
 		File file = new File(fullName); // System.out.println(webappRoot + fullName);
+
+		multipartFile.transferTo(file);
+		BufferedImage bi = ImageIO.read(file);
+
+		byte[] data = multipartFile.getBytes();
+		FileOutputStream fos = new FileOutputStream(fullName);
+		// 03. 맵 반환
+		fos.write(data);
+		fos.close();
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("fileName", fileName);
+		resultMap.put("imgWidth", bi.getWidth());
+		resultMap.put("imgHeight", bi.getHeight());
 
-		try {
-			multipartFile.transferTo(file);
-			BufferedImage bi = ImageIO.read(file);
-
-			byte[] data = multipartFile.getBytes();
-			FileOutputStream fos = new FileOutputStream(fullName);
-			// 03. 맵 반환
-			fos.write(data);
-			fos.close();
-
-			resultMap.put("fileName", fileName);
-			resultMap.put("imgWidth", bi.getWidth());
-			resultMap.put("imgHeight", bi.getHeight());
-
-			System.out.println(resultMap);
+		System.out.println(resultMap);
 			
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return resultMap;
-			
 
 	}
 	@ResponseBody
