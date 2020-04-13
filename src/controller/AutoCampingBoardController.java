@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -155,10 +154,9 @@ public class AutoCampingBoardController {
 	}
 	
 	
-	
-	@RequestMapping(value = "/imgUpload", method = RequestMethod.POST)
+	@PostMapping(value="/imgUpload")
 	@ResponseBody
-	public Map<String, Object> autoCampingImgUpload(MultipartHttpServletRequest request) throws IOException {
+	public Map<String, Object> autoCampingImgUpload(MultipartHttpServletRequest request) {
 
 		MultiValueMap<String, MultipartFile> multiFileMap = request.getMultiFileMap();
 		List<MultipartFile> list = multiFileMap.get(FILE2); 
@@ -174,24 +172,33 @@ public class AutoCampingBoardController {
 		//System.out.println(fullName);
 
 		File file = new File(fullName); // System.out.println(webappRoot + fullName);
-
-		multipartFile.transferTo(file);
-		BufferedImage bi = ImageIO.read(file);
-
-		byte[] data = multipartFile.getBytes();
-		FileOutputStream fos = new FileOutputStream(fullName);
-		// 03. 맵 반환
-		fos.write(data);
-		fos.close();
-
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("fileName", fileName);
-		resultMap.put("imgWidth", bi.getWidth());
-		resultMap.put("imgHeight", bi.getHeight());
 
-		System.out.println(resultMap);
+		try {
+			multipartFile.transferTo(file);
+			BufferedImage bi = ImageIO.read(file);
+
+			byte[] data = multipartFile.getBytes();
+			FileOutputStream fos = new FileOutputStream(fullName);
+			// 03. 맵 반환
+			fos.write(data);
+			fos.close();
+
+			resultMap.put("fileName", fileName);
+			resultMap.put("imgWidth", bi.getWidth());
+			resultMap.put("imgHeight", bi.getHeight());
+
+			System.out.println(resultMap);
 			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return resultMap;
+			
 
 	}
 	@ResponseBody
