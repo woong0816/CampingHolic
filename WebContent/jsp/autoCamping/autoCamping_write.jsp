@@ -61,7 +61,7 @@ $(function(){
 	function sendFile(file,editer,welEditable){
 		 data = new FormData();
 		 data.append("file",file);
-		 
+		 console.log(file);
 		 $.ajax({
 			data : data,
 			type : "post",
@@ -70,6 +70,7 @@ $(function(){
 			cache : false,
 			contentType : false,
 			processData : false,
+			enctype :  "multipart/form-data",
 				success : function(result){
 					console.log(result);
 					console.log("파일 네임"+result.fileName);
@@ -80,9 +81,9 @@ $(function(){
 						console.log("changeWidth -> " + changeWidth);
 						console.log("changeHeight -> " + changeHeight);
 						
-						var img = $("<img src='${contextPath}/home/ubuntu/download/" + result.fileName+"' style='width: " + changeWidth + "px; height: " + changeHeight + "px;''>")[0];
+						var img = $("<img src='/CampingHolic/imgUpload/" + result.fileName+"' style='width: " + changeWidth + "px; height: " + changeHeight + "px;''>")[0];
 					} else {
-						var img = $("<img src='${contextPath}/home/ubuntu/download/" + result.fileName+"'>")[0];
+						var img = $("<img src='/CampingHolic/imgUpload/" + result.fileName+"'>")[0];
 						
 					}
 					$summernote.summernote('insertNode', img);
@@ -149,14 +150,10 @@ $(function(){
 				        level: 2 // 지도의 확대 레벨
 				    };
 				var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+				
+				
 			
-			
-		
-
-
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
-
 			// 장소 검색 객체를 생성합니다
 			var ps = new kakao.maps.services.Places();  
 
@@ -206,7 +203,7 @@ $(function(){
 
 			// 검색 결과 목록과 마커를 표출하는 함수입니다
 			function displayPlaces(places) {
-
+				//검색 결과중에 장소의 결과값을 받아오
 			    var listEl = document.getElementById('placesList'), 
 			    menuEl = document.getElementById('menu_wrap'),
 			    fragment = document.createDocumentFragment(), 
@@ -218,7 +215,7 @@ $(function(){
 
 			    // 지도에 표시되고 있는 마커를 제거합니다
 			    removeMarker();
-			    
+				console.log("삭제되어야 함");	    
 			    for ( var i=0; i<places.length; i++ ) {
 
 			        // 마커를 생성하고 지도에 표시합니다
@@ -236,8 +233,7 @@ $(function(){
 			        (function(marker, title,itmelEl) {
 							if(title!=places[i].address_name){
 								kakao.maps.event.addListener(marker, 'mouseout', function() {
-									
-									infowindow.close();
+								
 							
 								 });
 							}else{
@@ -280,35 +276,29 @@ $(function(){
 			            
 			            itemEl.onclick =  function () {
 			         //여기서 좌표 중심으로 하고 이미지 변경 
-			         	console.log(placePosition);
 			            	$("#ac_address").val(title);
 			            	 var geocoder = new kakao.maps.services.Geocoder();
-
-			            	 
 			            	// 주소로 좌표를 검색합니다
 			            	geocoder.addressSearch(title, function(result, status) {
-
 			            	    // 정상적으로 검색이 완료됐으면 
 			            	     if (status === kakao.maps.services.Status.OK) {
 
 			            	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
 			            	        // 결과값으로 받은 위치를 마커로 표시합니다
-			            	        var marker = new kakao.maps.Marker({
-			            	            map: map,
-			            	            position: coords
-			            	        });
+			            	      
 
 			            	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 			            	        
 			            	         /* var infowindow = new kakao.maps.InfoWindow({
 						            	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+title+'</div>'
 						            	        }); */
-			            	        
 			            	    	 for(var i=0; i<places.length; i++){
-						         			
 						         		if(title==places[i].address_name){
-						         			displayInfowindow(marker, places[i].place_name);
+						         			console.log(places[i].x);
+						         			console.log(places[i].y);
+						         			var coords = new kakao.maps.LatLng(places[i].y, places[i].x);
+						         			displayInfowindow(marker,places[i].place_name);
 						         					 var level = map.getLevel();
 						         				   map.setLevel(2);
 						         		}else{
