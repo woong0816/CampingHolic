@@ -86,7 +86,7 @@ height: 31px;
 						<div class="title_dv">
 						<a onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'">${autoCampingMainList.AC_TITLE}</a>
 						</div>
-						<div><img src="${pagecontext.request.contextpath}/CampingHolic${autoCampingMainList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'"
+						<div><img src="${contextPath}/CampingHolic${autoCampingMainList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'"
 						 class="a_img" style= "width: 300px; height:300px;"></div>
 						<span style="color: #DF0101;">♥</span><small id="like">좋아요${autoCampingMainList.LIKECOUNT}</small>
 						<div class="readCount_no"><span style="font-size:15px;">조회수&nbsp;</span>
