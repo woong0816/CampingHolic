@@ -155,7 +155,7 @@ public class AutoCampingBoardController {
 	}
 	
 	
-	@PostMapping(value="/imgUpload")
+	
 	@RequestMapping(value="/imgUpload" ,method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public Map<String, Object> autoCampingImgUpload(MultipartHttpServletRequest request) throws IOException {
