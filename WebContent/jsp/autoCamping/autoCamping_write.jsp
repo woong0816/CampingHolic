@@ -99,10 +99,6 @@ $(function(){
 			 
 		 });
 	}
-	
-
-
-
 </script>
 	<div style="background-image: url(../img/MainImg.jpg); background-size: cover; width: 100%; height: 200px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
 	<div class="container">
@@ -119,7 +115,7 @@ $(function(){
 				        <div class="option">
 				            <div>
 				                
-				                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+				                    장소 : <input type="text" value="강남" id="keyword" size="15"> 
 				                  <button type="button" onclick="searchPlaces(); return false;">검색하기</button> 
 				            </div>
 				        </div>
@@ -128,19 +124,6 @@ $(function(){
 				        <div id="pagination"></div>
 				    </div>
 				</div>
-				 	
-			 		<!-- <table id="autoCampingWrite_tb" style="width:550px; border:1px solid grey; float: left;">
-			 			<tr style="border-bottom:  1px solid grey; height: 40px;">
-							<th style="text-align: center; width:8%;">번호</th>
-							<th style="text-align: center; width:23%;">상호명</th>
-							<th style="text-align: center; width:23%;">구분</th>
-							<th style="text-align: center; width:23%;">전화번호</th>
-							<th style="text-align: center; width:23%;">주소</th>
-						</tr>
-			 		</table> -->
-			 		
-			 		
-			 <!-- 	<div id="map" style="width: 50%; height:490px; float: right;"></div> -->
 		
 	<script>
 			var markers = [];
@@ -241,39 +224,6 @@ $(function(){
 									
 							}
 
-			            /* kakao.maps.event.addListener(marker, 'mouseout', function() {
-			            	 for(var i=0; i<places.length; i++){
-					         		
-					         		if(title!=places[i].address_name){
-					         			console.log(title +"  2:2  "+places[i].address_name);
-					         			infowindow.close();
-					            	        //infowindow.open(map, marker);
-					         		}else{
-					         			
-		            	    	//infowindow.close();
-					         			
-					         		}
-					         	}
-			            	
-			            	
-			            }); */
-			            
-			           
-			           /*  daum.maps.event.addListener(marker, 'click', function() {
-			                alert(title);
-			            	displayInfowindow(marker, title);
-			            });
-			             */
-			             
-			             /* itemEl.mouseover = function(){
-			            	
-			            	 kakao.maps.event.addListener(marker, title, function() {
-									console.log(title +"  1:2 "+places[i]); 
-									displayInfowindow(marker, title);
-								 });
-			             } */
-			             
-			            
 			            itemEl.onclick =  function () {
 			         //여기서 좌표 중심으로 하고 이미지 변경 
 			            	$("#ac_address").val(title);
@@ -285,14 +235,6 @@ $(function(){
 
 			            	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-			            	        // 결과값으로 받은 위치를 마커로 표시합니다
-			            	      
-
-			            	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-			            	        
-			            	         /* var infowindow = new kakao.maps.InfoWindow({
-						            	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+title+'</div>'
-						            	        }); */
 			            	    	 for(var i=0; i<places.length; i++){
 						         		if(title==places[i].address_name){
 						         			console.log(places[i].x);
@@ -314,13 +256,6 @@ $(function(){
 			            	});    
 			            };
 
-			            /* itemEl.onmouseout =  function () {
-			                infowindow.close();
-			            }; */
-			            
-			            
-			            
-			            
 			        })(marker, places[i].address_name);
 
 			        fragment.appendChild(itemEl);

@@ -39,8 +39,6 @@
 			document.getElementById('reply_btn').disabled = 'disabled';
 		}
 
-		
-		
 	})
 	
 	$(function(){
@@ -92,10 +90,6 @@
  				
  			}
  			
- 			
- 			
- 			
- 		
  		
 		});
 	
@@ -140,9 +134,6 @@
 					alert("request :" + request + "\n" + "status :"
 							+ status + "\n" + "error :" + error);
 				}
-			
-			
-			
 		});
 		
 		
@@ -173,12 +164,9 @@
 				alert("request :" + request + "\n" + "status :"
 						+ status + "\n" + "error :" + error);
 			}
-			
-			
-			
+
 		});
-		
-		
+
 	}
 	
 	function board_delete(){
@@ -187,9 +175,7 @@
 		}else{
 			return;
 		}
-		
-		
-		
+
 	}
 	
 	
@@ -220,9 +206,7 @@
 				}
 
 				$(".checkHeart").text(likeImgTag);
-				
-			
-				
+
 			},
 			error : function(request, status, error){
 				alert("request : " + request + "\n" + "status" + status + "\n"
@@ -253,7 +237,6 @@
 	    });
 		
 	}
-	
 
 	  Kakao.init('d969de59a43d643d6d0eb474511d8cf8');
 	function kakaoUrl(){
@@ -271,7 +254,6 @@
 		  });
 	  
 		}
-
 
 	function twitterUrl(){
 		
@@ -312,9 +294,6 @@
 				
 			<hr style="margin-bottom: 70px">
 			<div style="text-align: center;">${detailView.autoCampingBoard.AC_CONTENT}</div>
-			
-			
-		
 
 	<div style="text-align: center; margin-right: 80px; margin-bottom: 15px;">
 		<c:choose>
@@ -376,6 +355,7 @@
 				    } 
 				});    
 		</script>
+		
 	<div style="width: 100%; height: 380px; display: table-cell;">		
 		<div class="w3-content w3-display-container" id="display-container" style="height: 434px; width:680px; clear: both; float: left;">
 				<c:forEach items="${detailView.autoCamping_fileList}" var ="fileList">
@@ -430,7 +410,6 @@
 			
 				</table>
 			</div>
-		
 		
 	<div class="underButton">
 	<c:if test="${memberNum == detailView.autoCampingBoard.M_NUM}">

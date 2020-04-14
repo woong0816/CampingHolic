@@ -130,16 +130,5 @@ $(function(){
 				<br>
 			</div>
 		</div> 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 </body>
 </html>

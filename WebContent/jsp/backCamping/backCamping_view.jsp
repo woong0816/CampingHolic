@@ -37,7 +37,6 @@
 				document.getElementById('replyContent').readOnly = true;
 				document.getElementById('replyContent').placeholder = '로그인후에 이용가능한 서비스입니다.';
 				document.getElementById('reply_btn').disabled = 'disabled';
-				
 			}
 
 		})
@@ -164,9 +163,7 @@
 			error : function(request, status, error) {
 				alert("request :" + request + "\n" + "status :"
 						+ status + "\n" + "error :" + error);
-			}
-			
-			
+			}			
 			
 		});
 		
@@ -179,8 +176,6 @@
 		}else{
 			return;
 		}
-		
-		
 		
 	}
 	
@@ -195,10 +190,7 @@
 			type : "post",
 			dataType : "json",
 			success : function(data){
-			
 				var likeImgTag = '';
-				
-				
 				if (data.result) {
 								var likeUser = Number($("#likeCount").text());
 								likeUser += 1;
@@ -275,7 +267,6 @@ function facebookUrl(){
 
 
 </script>
-
 
 </head>
 <body>

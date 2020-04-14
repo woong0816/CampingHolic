@@ -340,7 +340,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	<div>
 		<div class="map_box" id="map" style="width:50%; height:350px; float:right;"></div>
 	</div>
-		<div class="address_box"><span id="address">${glampingView.glampingBoard.AC_ADDRESS}</span></div>	
+		<div class="address_box"><span id="address">${glampingView.glampingBoard.GL_ADDRESS}</span></div>	
 
 
 <script>
