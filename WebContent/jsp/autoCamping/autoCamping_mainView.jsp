@@ -21,7 +21,6 @@ $(function(){
 		$(".write_btn").click(function(){
 			if(memberNum==0){
 				alert("로그인후 이용해주세요");
-				
 			}else{	
 				location.href= "../autoCamping/autoCamping_writeView";
 			}
@@ -37,9 +36,9 @@ $(function(){
 	<div>
 		<jsp:include page="/jsp/CampingHolic_header.jsp"></jsp:include>
 	</div> 
-	<div style="text-align:center;"> 
-		<img src="${contextPath}/img/autoCamping_main.jpg" style="width: 1400px; height:500px;"></img>
-	</div>
+		<div style="text-align:center;"> 
+			<img src="${contextPath}/img/autoCamping_main.jpg" style="width: 1400px; height:500px;"></img>
+		</div>
 	
 	<br>
 <div class="container">
