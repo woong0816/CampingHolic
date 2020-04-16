@@ -13,7 +13,71 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑홀릭-오토캠핑</title>
+<style type="text/css">
+.order{
+color: white;
+    width: 88px;
+    border: solid 1px #1f8dd6;
+    background-color: #1f8dd6;
+    height: 35px;
+}
+.paging {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0;
+}
+.paging a,
+.paging strong {
+	display: inline-block;
+	width: 44px;
+	height: 24px;
+	margin: 0 1px;
+	border: 1px solid #dbdbdb;
+	color: #767676;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 23px;
+	vertical-align: middle;
+  text-decoration: none;
+}
+.paging a:hover,
+.paging a:active,
+.paging a:focus {
+	border: 1px solid #4c8500;	
+}
+.paging strong {
+	color: #fff;
+	background: #4c8500;
+	border: 1px solid #4c8500;
+}
+.paging .direction {
+	background: url('http://leroro.net/images/ui/sp_btn_paging.gif') no-repeat;
+}
+.paging .direction.first {
+	background-position: left top;
+}
+.paging .direction.prev {
+	margin: 0 12px 0 1px;
+	background-position: -20px 0;
+}
+.paging .direction.next {
+	margin: 0 1px 0 12px;
+	background-position: -40px 0;
+}
+.paging .direction.last {
+	background-position: right top;
+}
+.paging .direction span {
+	position: absolute;
+	display: block;
+	width: 20px;
+	height: 18px;
+	overflow: hidden;
+	z-index: -1;
+}
+
+</style>
 
 <script type="text/javascript">
 $(function(){
@@ -91,17 +155,16 @@ $(function(){
 </div>	
 	
 	<div class="page_number">
-			<div>
 				<br>
-					<div class="page_n_menu">
+					<div class="paging">
 						<c:if test="${viewData.startPage !=1 }">
-							<a href = "autoCamping_main?page=1"
+							<a class="direction fisrt" href = "autoCamping_main?page=1"
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 							
 							>&lt; 처음</a>
-							<a href = "autoCamping_main?page=${viewData.startPage-1}">&lt; 이전</a>
+							<a class="direction prev" href = "autoCamping_main?page=${viewData.startPage-1}">&lt; 이전</a>
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
@@ -109,7 +172,7 @@ $(function(){
 						<c:forEach var = "pageNum" begin="${viewData.startPage}" end="${viewData.endPage < viewData.pageTotalCount ? viewData.endPage : viewData.pageTotalCount}">
 							<c:choose>
 								<c:when test="${pageNum == viewData.currentPage}">
-									<span class="current">${pageNum}</span>
+									<strong><span class="current">${pageNum}</span></strong>
 								</c:when>
 								<c:otherwise>
 									<a href="autoCamping_main?page=${pageNum}"
@@ -121,13 +184,13 @@ $(function(){
 							</c:choose>
 						</c:forEach>
 						<c:if test = "${viewData.endPage < viewData.pageTotalCount}">
-							<a href = "autoCamping_main?page=${viewData.endPage+1}
+							<a class="direction next" href = "autoCamping_main?page=${viewData.endPage+1}
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 							
 							">다음 &gt;</a>
-							<a href = "autoCamping_main?page=${viewData.pageTotalCount}
+							<a class="direction last" href = "autoCamping_main?page=${viewData.pageTotalCount}
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
@@ -135,7 +198,6 @@ $(function(){
 						</c:if>
 					</div>
 				<br>
-			</div>
 		</div> 
 	<footer>
 		<%@include file="../CampingHolic_footer.jsp" %>

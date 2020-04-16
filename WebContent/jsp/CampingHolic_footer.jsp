@@ -32,8 +32,8 @@
 
 #info, #category{
 	color: #fff;
-	font-size: 20px;
-	margin-left: 100px;
+	font-size: 15px;
+    margin-left: 50px;
 }
       
 #mnj{
@@ -52,6 +52,7 @@
 			홍기웅<br>
 			Tel. 010 - 9289 - 1039<br>
 			Email : ghdrldnd13@naver.com<br>
+			github : https://github.com/woong0816/CampingHolic
 		</div>
 	</div>
 </div>

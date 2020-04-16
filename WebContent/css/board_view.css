@@ -41,6 +41,16 @@ width: 1400px;
 	margin-bottom: 20px;
     margin-top: 20px;
 }
+.order_button{
+	
+	color: white;
+    width: 88px;
+    border: solid 1px #1f8dd6;
+    background-color: #1f8dd6;
+    height: 35px;
+
+	
+}
 
 	
     

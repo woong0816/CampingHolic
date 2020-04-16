@@ -48,7 +48,7 @@ public class MemberServiceImp implements MemberService{
 			MailHandler sendMail = new MailHandler(mailSender);
 			sendMail.setSubject("Camping Holic 이메일 인증입니다.");
 			sendMail.setText(new StringBuffer().append("<h1>CampingHolic 회원가입을 계속 하시려면 인증을 해주세요<h1>")
-					.append("<a href='http://15.165.161.44:8080/CampingHolic/member/emailConfirm?userEmail=")
+					.append("<a href='http://13.125.237.170:8080/CampingHolic/member/emailConfirm?userEmail=")
 					.append(member.getEmail())
 					.append("&memberAuthKey=")
 					.append(key)

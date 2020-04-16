@@ -17,7 +17,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-.container{text-align: center;}
+.container{text-align: center;
+margin-top: 73px;
+margin-bottom: 73px;
+}
 #my_pass{
 margin-bottom: 20px;
 }
@@ -63,10 +66,10 @@ $(function(){
 	</header> 
 		
 			<!-- 여기서 회원 비밀 번호를 입력 하여 확인 -->
-<div class="container">
 		<div style="text-align: center;">
 			<img src="${contextPath}/img/main_img.jpg" style="width: 1880px; height:500px;"></img>
 		</div>
+<div class="container">
 	<div id="pwFrm">
 		<h3>회원정보 수정</h3>
 			<div class="panel panel-info" id="pwAuth">
@@ -84,11 +87,11 @@ $(function(){
 				</div>
 			</div>
 	</div>
+</div>
 	<footer>
 		<%@include file="../CampingHolic_footer.jsp" %>
 	</footer>
 
-</div>
 
 </body>
 </html>

@@ -14,7 +14,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebde98a774affbd3e0e745441dd9db87&libraries=services"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑홀릭-오토캠핑</title>
 
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -92,7 +92,16 @@
  			
  		
 		});
-	
+ 		
+		$("#writeButton").click(function(){
+			if(m_num==0){
+				alert("로그인후 이용해주세요");
+				return false;
+			}else{	
+				location.href= "../autoCamping/autoCamping_writeView";
+			}
+		});
+ 		
 	});
 	function getReplyList(){
 		var replyContainer = $("#replyContainer");
@@ -229,7 +238,7 @@
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
 	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
-	                'og:url': 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
+	                'og:url': 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
 	            }
@@ -247,8 +256,8 @@
 		      imageUrl: "https://file.okky.kr/images/1513127807083.jpg",
 		      
 		      link: {             
-		        mobileWebUrl: 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
-		        webUrl: 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}'
+		        mobileWebUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
+		        webUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}'
 		      }
 		    }
 		  });
@@ -258,7 +267,7 @@
 	function twitterUrl(){
 		
 		    var content = "[캠핑홀릭] "
-		    var link = 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}';
+		    var link = 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}';
 		    var popOption = "width=370, height=518, resizable=no, scrollbars=no, status=no;";
 		    var wp = window.open("http://twitter.com/share?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(content), 'twitter', popOption);
 		    if (wp) {wp.focus();}    
@@ -413,11 +422,11 @@
 		
 	<div class="underButton">
 	<c:if test="${memberNum == detailView.autoCampingBoard.M_NUM}">
-		<input type="button" class="modifyButton" value="수정" onclick="location.href='autoCampingModifyForm?ac_num=${detailView.autoCampingBoard.AC_NUM}'">
-		<input type="button" class="deleteButton" value="삭제" onclick="board_delete();">
+		<input type="button" class="order_button" value="수정" onclick="location.href='autoCampingModifyForm?ac_num=${detailView.autoCampingBoard.AC_NUM}'">
+		<input type="button" class="order_button" value="삭제" onclick="board_delete();">
 	</c:if>
-		<input type="button" class="mainViewButton" value="목록" onclick="location.href='autoCamping_main'"> 
-		<input type="reset" class="writeButton" value="새글 작성" onclick="location.href='autoCamping_writeView'">  
+		<input type="button" class="order_button" value="목록" onclick="location.href='autoCamping_main'"> 
+		<input type="button" id="writeButton" class="order_button" value="새글 작성">  
 	
 	</div>
 </div>

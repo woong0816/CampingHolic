@@ -33,7 +33,6 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//연결 생성
 		connectedUser.add(session);
-		System.out.println("연결 생성");
 		//연결 될떄마다 세션 생성
 	}
 
@@ -41,8 +40,6 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 			//연결 끊킴
 		connectedUser.remove(session);
-		System.out.println("연결 해제");
-		
 	}
 
 

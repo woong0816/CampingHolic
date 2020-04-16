@@ -12,7 +12,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebde98a774affbd3e0e745441dd9db87&libraries=services"></script>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>캠핑홀릭-백패킹</title>
 </head>
 <body>
  	<div>	
@@ -49,6 +49,25 @@ $(document).ready(function(){
 			    event.preventDefault();
 			  };
 			});		
+		
+		$("#backCamping_write").submit(function(){		
+			var title = $("#bc_title").val();
+			var content = $("#summernote").val();
+			var adress = $("#bc_address").val();
+			
+			if(title==""){
+				alert("제목을 입력해주세요");
+				return false;
+			}else if(content==""){
+				alert("내용을 입력해주세요");
+				return false;
+			}else if(adress==""){
+				alert("장소를 입력해주세요");
+				return false;
+			}
+
+		});
+			
 	});
 
 
@@ -96,9 +115,9 @@ $(document).ready(function(){
 </script>
 
 
-		<div style="background-image: url(../img/MainImg.jpg); background-size: cover; width: 100%; height: 200px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
+		<div style="background-image: url(../img/backcamping_main.jpg); background-size: cover; width: 100%; height: 500px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
 		<div class="container">
-		<form action="backCampingWrite" method="post">
+		<form action="backCampingWrite" id="backCamping_write" method="post">
 			
 			<br>
 				<div class="title_box">
@@ -222,7 +241,7 @@ $(document).ready(function(){
 
 			            itemEl.onclick =  function () {
 			         //여기서 좌표 중심으로 하고 이미지 변경 
-			            	$("#ac_address").val(title);
+			            	$("#bc_address").val(title);
 			            	 var geocoder = new kakao.maps.services.Geocoder();
 			            	// 주소로 좌표를 검색합니다
 			            	geocoder.addressSearch(title, function(result, status) {
@@ -369,9 +388,9 @@ $(document).ready(function(){
 			
     </script>
 			<div class="under_btn">
-			<input type="submit" value="등록">&nbsp;&nbsp;
-			<input type="button" value="목록" onclick="location.href='backCamping_main'"> &nbsp;&nbsp;
-			<input type="reset" value="다시작성">
+			<input class="order_button" type="submit" value="등록">&nbsp;&nbsp;
+			<input class="order_button" type="button" value="목록" onclick="location.href='backCamping_main'"> &nbsp;&nbsp;
+			<input class="order_button" type="reset" value="다시작성">
 			</div>
 		</form>
 		<br>

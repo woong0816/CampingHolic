@@ -27,7 +27,6 @@ public class BackCampingReplyServiceImp implements BackCampingReplyService{
 		
 	}
 
-
 	@Override
 	public List<Map<String, Object>> getReplyList(int bc_num) {
 		List<Map<String, Object>> param = backCampingReplyDao.getReplyList(bc_num);

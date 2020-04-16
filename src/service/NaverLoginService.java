@@ -24,7 +24,7 @@ public class NaverLoginService {
 	private final static String CLIENT_SECRET = "rUW38Oin7R";
 	//private final static String REDIRECT_URI = "http://localhost:8080/CampingHolic/main/mainView";
 	//private final static String REDIRECT_URI = "http%3A%2F%2Flocalhost%3A8080%2FnaverLogin%2Fcallback";
-	private final static String REDIRECT_URI = "http://15.165.161.44:8080/CampingHolic/naverLogin/callback";
+	private final static String REDIRECT_URI = "http://13.125.237.170:8080/CampingHolic/naverLogin/callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";

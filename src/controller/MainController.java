@@ -46,7 +46,6 @@ public class MainController {
 		model.addAttribute("glampingData", glampingService.mainViewList(searchParam));
 		model.addAttribute("backData", backCampingService.mainViewList(searchParam));
 		
-
 		return "Camping_Main";
 	}
 

@@ -149,7 +149,6 @@ public class AutoCampingServiceImp implements AutoCampingService{
 	public List<Map<String, Object>> SearchAutoCampingInformation(String keyword, int pageNum) {
 		List<Map<String, Object>> foodInformation = new ArrayList<Map<String,Object>>();
         try {
-        	System.out.println("시작 페이지" + pageNum);
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/local.json?query="+text+"&display=10&start=1";
             URL url = new URL(apiURL);
@@ -177,16 +176,7 @@ public class AutoCampingServiceImp implements AutoCampingService{
       
             
             JSONObject jsonObject = new JSONObject(response.toString());
-            
-            System.out.println("디스플레이" + jsonObject.getInt("display"));
-			/*
-			 * int totalPage = calPageTotalCount(jsonObject.getInt("total")); int startPage
-			 * = getStartPage(jsonObject.getInt("start")); System.out.println("받아오는 시작페이지" +
-			 * startPage); int endPage = getEndPage(pageNum);
-			 */
-			
-            
-            
+
             JSONArray items = jsonObject.getJSONArray("items");
    	
     		for(int i =0;i<items.length();i++) {
@@ -202,12 +192,7 @@ public class AutoCampingServiceImp implements AutoCampingService{
     			tempfoodInfor.put("roadAddress",item.getString("roadAddress"));
     			tempfoodInfor.put("mapx",item.getString("mapx"));
     			tempfoodInfor.put("mapy",item.getString("mapy"));
-				/*
-				 * tempfoodInfor.put("totalPage", totalPage); tempfoodInfor.put("startPage",
-				 * startPage); tempfoodInfor.put("endPage", endPage);
-				 */
-    			
-				
+			
     			foodInformation.add(tempfoodInfor);
     			
     		}
@@ -216,19 +201,13 @@ public class AutoCampingServiceImp implements AutoCampingService{
     			//System.out.println(m);
     		}
     		
-
-    		
         } catch (Exception e) {
             System.out.println(e);
-
         }
-	
 	
 	return foodInformation;
 
 	}
-
-	
 
 	public int calPageTotalCount(int totalPage) {
 		

@@ -43,7 +43,7 @@ public class MemberController {
 		}
 		return "result";
 	}
-	//로그인 처리
+
 	@PostMapping(value="/loginAction")
 	public String loginAction(@ModelAttribute Member member,HttpSession session,Model model) {
 		if(memberService.loginMember(member.getEmail(), member.getPassword())) {
@@ -58,7 +58,7 @@ public class MemberController {
 		model.addAttribute("url", "../main/mainView");
 		
 		return "result";
-	}
+	}	//로그인 처리
 
 	@GetMapping(value="/emailConfirm")
 	public String emailConfirm(@RequestParam Map<String, Object> params,Model model) {
@@ -79,7 +79,7 @@ public class MemberController {
 			model.addAttribute("url", "../main/mainView");
 		}
 		return "result";
-	}
+	} //이메일 인증
 	
 	@GetMapping(value="/logoutAction")
 	public String logoutAction(HttpSession session,Model model) {
@@ -89,7 +89,8 @@ public class MemberController {
 		model.addAttribute("msg", "로그아웃 되었습니다");
 		model.addAttribute("url", "../main/mainView");
 		return "result";
-	}
+	} //로그아웃
+	
 	@ResponseBody
 	@RequestMapping(value="/checkEmail")
 	public String checkEmail(@RequestParam String email) {
@@ -98,7 +99,7 @@ public class MemberController {
 		  };
 		 
 		return "{\"result\" : false}";
-	}
+	} //이메일 중복체크
 	
 	@ResponseBody
 	@RequestMapping(value="/nickcheck")
@@ -107,7 +108,8 @@ public class MemberController {
 			 return "{\"result\" : true}";
 		};
 		return "{\"result\" : false}";
-	}
+	}// 닉네임 중복체크
+	
 	@RequestMapping(value="/passwordDup")
 	@ResponseBody
 	public String passwordDup(@RequestParam Map<String, Object> params) {
@@ -115,11 +117,8 @@ public class MemberController {
 			 return "{\"result\" : true}";
 		}
 		return "{\"result\" : false}";
-	}
-	/*
-	 * @RequestMapping(value="/naverLogin") public String naverLogin() { return "";
-	 * }
-	 */
+	} 
+
 	@RequestMapping(value="/memberInfo")
 	public String memberModified() {
 		return "myPage/memberinfo";
@@ -142,7 +141,8 @@ public class MemberController {
 		//System.out.println("1");
 			 model.addAttribute("member", member);
 		return "myPage/memberModify";
-	}
+	} 
+	
 	@PostMapping(value="/memberModify")
 	public void ModifyMember(@RequestParam String password,HttpSession session,HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
@@ -157,7 +157,7 @@ public class MemberController {
 			}else {
 				out.print("<script>alert('비밀번호를 확인해주세요.'); location.href='../member/memberModify'</script>");
 				out.close();
-			}
+			} //회원 비밀번호 변경
 			
 	}
 }

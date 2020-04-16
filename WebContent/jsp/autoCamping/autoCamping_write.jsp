@@ -14,7 +14,7 @@
 <link href="${contextPath}/plugins/summernote/summernote.css" rel="stylesheet">
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+<title>캠핑홀릭-오토캠핑</title>
 
 </head>
 
@@ -56,6 +56,24 @@ $(function(){
 		    event.preventDefault();
 		  };
 		});		
+	
+	$("#autoCamping_write").submit(function(){		
+		var title = $("#ac_title").val();
+		var content = $("#summernote").val();
+		var adress = $("#ac_address").val();
+		
+		if(title==""){
+			alert("제목을 입력해주세요");
+			return false;
+		}else if(content==""){
+			alert("내용을 입력해주세요");
+			return false;
+		}else if(adress==""){
+			alert("장소를 입력해주세요");
+			return false;
+		}
+
+	});
 });
 
 
@@ -104,9 +122,9 @@ $(function(){
 		 });
 	}
 </script>
-	<div style="background-image: url(../img/MainImg.jpg); background-size: cover; width: 100%; height: 200px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
+	<div style="background-image: url(../img/autoCamping_main.jpg); background-size: cover; width: 100%; height: 500px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
 	<div class="container">
-		<form action="autoCampingWrite" method="post">
+		<form action="autoCampingWrite" id="autoCamping_write" method="post">
 			<br>
 		 		<div class="title_box">
 		 			<input type="text" class="title" name="ac_title" id="ac_title" value="오토캠핑 제목을 입력해주세요" onfocus="this.value=''; return true;">
@@ -381,9 +399,9 @@ $(function(){
 			
     </script>
 		<div class="under_btn">
-			<input type="submit" value="등록">&nbsp;&nbsp;
-			<input type="button" value="목록" onclick="location.href='autoCamping_main'"> &nbsp;&nbsp;
-			<input type="reset" value="다시작성">
+			<input class="order_button" type="submit" value="등록">&nbsp;&nbsp;
+			<input class="order_button" type="button" value="목록" onclick="location.href='autoCamping_main'"> &nbsp;&nbsp;
+			<input class="order_button" type="reset" value="다시작성">
 		</div>
 		</form>
 		

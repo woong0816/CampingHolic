@@ -18,7 +18,7 @@ request.setAttribute("contextPath", request.getContextPath());
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebde98a774affbd3e0e745441dd9db87&libraries=services"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑홀릭-글램핑</title>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -103,9 +103,17 @@ request.setAttribute("contextPath", request.getContextPath());
  			return false;
  				
  			}
- 		
- 		
  		});
+ 		
+ 		$("#writeButton").click(function(){
+			if(m_num==0){
+				alert("로그인후 이용해주세요");
+				return false;
+			}else{	
+				location.href= "../glamping/glamping_writeView";
+			}
+		});
+ 		
 	});
 	function getReplyList(){
 			var replyContainer = $("#replyContainer");
@@ -248,7 +256,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
 	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
-	                'og:url': 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
+	                'og:url': 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
 	            }
@@ -267,8 +275,8 @@ request.setAttribute("contextPath", request.getContextPath());
 		      imageUrl: "https://file.okky.kr/images/1513127807083.jpg",
 		      
 		      link: {             
-		        mobileWebUrl: 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
-		        webUrl: 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}'
+		        mobileWebUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
+		        webUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}'
 		      }
 		    }
 		  });
@@ -279,7 +287,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	function twitterUrl(){
 		
 		    var content = "[캠핑홀릭] "
-		    var link = 'http://192.168.0.9:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}';
+		    var link = 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}';
 		    var popOption = "width=370, height=518, resizable=no, scrollbars=no, status=no;";
 		    var wp = window.open("http://twitter.com/share?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(content), 'twitter', popOption);
 		    if (wp) {wp.focus();}    
@@ -437,12 +445,12 @@ request.setAttribute("contextPath", request.getContextPath());
 		</div>
 			    
 	<div class="underButton">
-			<input type="reset" class="writeButton" value="새글 작성" onclick="location.href='glamping_writeView'">  
+			<input type="button" id="writeButton" class="order_button" value="새글 작성">  
 		<c:if test="${memberNum == glampingView.glampingBoard.M_NUM}">
-			<input type="button" class="modifyButton" value="수정" onclick="location.href='glampingModifyForm?num=${glampingView.glampingBoard.GL_NUM}'">
-			<input type="button" class="deleteButton" value="삭제" >
+			<input type="button" class="order_button" value="수정" onclick="location.href='glampingModifyForm?num=${glampingView.glampingBoard.GL_NUM}'">
+			<input type="button" class="order_button" value="삭제" >
 		</c:if>
-			<input type="button" class="mainViewButton" value="목록" onclick="location.href='glamping_main'"> 
+			<input type="button" class="order_button" value="목록" onclick="location.href='glamping_main'"> 
 	</div>	
 
 </div>

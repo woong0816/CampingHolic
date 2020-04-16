@@ -61,7 +61,6 @@ public class GlampingController {
 		serchType.put("keyword", keyword);
 		serchType.put("type", type);
 	
-		
 		//키워드는 검색한 키워드
 		//타입은 조회수 좋아요 최신순
 		Map<String, Object> viewData = new HashMap<String, Object>();
@@ -74,10 +73,9 @@ public class GlampingController {
 
 	@RequestMapping(value = "/glamping_writeView")
 	public String glampingWriteView() {
-		//System.out.println("글램핑 게시글 작성폼 요청");
-		// 글랭핑 게시글 작성 폼 요청
 		return "glamping/glamping_write";
 	}
+	// 글랭핑 게시글 작성 폼 요청
 
 	@PostMapping(value = "/glampingWrite")
 	public String glampingWrite(@ModelAttribute GlampingBoard glampingBoard, Model model,HttpSession session) {
@@ -86,8 +84,7 @@ public class GlampingController {
 		int m_num = (int)session.getAttribute("memberNum");
 		glampingBoard.setM_num(m_num);
 		List<String> imgTag = glampingService.fileNameList(content);
-		
-		//System.out.println(imgTag);
+
 		if(glampingService.insertGlampingBoard(glampingBoard, imgTag)) {
 			//insert success
 			model.addAttribute("msg", "등록완료");
@@ -103,7 +100,6 @@ public class GlampingController {
 	//글램핑 게시글 상세보기
 	@GetMapping(value="/glampingBoardView")
 	public String glampingView(Model model, int gl_num,HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		//상세보기 여기서 좋아요 로직을 처리해야 하는대....,,,,
 		int m_num = (int)session.getAttribute("memberNum");
 		
 		Cookie[] cookies = request.getCookies();
@@ -119,14 +115,12 @@ public class GlampingController {
 		if(viewCookie == null) {
 			Cookie newCookie = new Cookie("cookie"+gl_num,"|" + gl_num + "|");
 			response.addCookie(newCookie);
-			System.out.println("123"+newCookie);
 			glampingService.readCountUpdate(gl_num);
 		}else {
 			//쿠기값있음 
 		}
 		
-		
-		//System.out.println(glampingService.GlampingBoardDetailView(m_num, gl_num));
+
 		model.addAttribute("glampingView", glampingService.GlampingBoardDetailView(m_num, gl_num));
 		
 		return "glamping/glamping_view";
@@ -141,7 +135,6 @@ public class GlampingController {
 	//글램핑 게시글 수정 
 	@PostMapping(value="/glampingModify")
 	public String glampingModify(@ModelAttribute GlampingBoard glampingBoard,Model model) {
-		//System.out.println(glampingBoard);
 		String content = glampingBoard.getGl_content();
 		
 		List<String> imgTag = glampingService.fileNameList(content);
@@ -165,10 +158,7 @@ public class GlampingController {
 			if(glampingService.deleteGlampinBoard(num)) {
 				model.addAttribute("msg", "삭제되었습니다");
 			}
-		
-		
 		return "result";
-		
 	}
 	
 
@@ -187,10 +177,8 @@ public class GlampingController {
 		String today = formatter.format(new Date()); // 오늘 일자 및 시간 세팅
 		String fileName = today + "-" + uuid + "_" + multipartFile.getOriginalFilename();
 		String fullName = UPLOADIMGPATH + fileName;
-
-		//System.out.println(fullName);
-
-		File file = new File(fullName); // System.out.println(webappRoot + fullName);
+		
+		File file = new File(fullName);
 
 		multipartFile.transferTo(file);
 		BufferedImage bi = ImageIO.read(file);
@@ -206,8 +194,6 @@ public class GlampingController {
 		resultMap.put("imgWidth", bi.getWidth());
 		resultMap.put("imgHeight", bi.getHeight());
 
-		//System.out.println(resultMap);
-
 		return resultMap;
 
 	}
@@ -215,13 +201,9 @@ public class GlampingController {
 	@ResponseBody
 	@PostMapping(value="/addressSearch")
 	public Map<String, List<Map<String, Object>>> addressSearch(String addressVal,@RequestParam(defaultValue = "1")int pageNum){
-		//System.out.println(addressVal);
 		List<Map<String, Object>> addressList =  glampingService.SearchGlampingInformation(addressVal,pageNum);
-		//System.out.println(addressList.get(0));
 		Map<String, List<Map<String, Object>>> mapList = new HashMap<String, List<Map<String, Object>>>();
 		mapList.put("addressList", addressList);
-		//System.out.println(addressList);
-		//System.out.println(mapList);
 		return mapList;
 	}
 	@ResponseBody

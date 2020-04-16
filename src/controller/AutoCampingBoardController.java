@@ -85,7 +85,7 @@ public class AutoCampingBoardController {
 				
 		}
 			return "result";
-	}
+	}//오토캠핑 글쓰기
 	
 	
 	@GetMapping(value="/autoCampingView")

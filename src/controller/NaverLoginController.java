@@ -43,11 +43,7 @@ public class NaverLoginController {
 	@ResponseBody
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, HttpSession session) {
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginService클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginService.getAuthorizationUrl(session);
-		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-		//System.out.println("네이버:" + naverAuthUrl);
 		String decodedString = "";
 		try {
 			decodedString = URLDecoder.decode(naverAuthUrl, "UTF-8");
@@ -55,7 +51,6 @@ public class NaverLoginController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}   
-		
 		// 네이버	
 		return decodedString;	
 	}
@@ -69,11 +64,7 @@ public class NaverLoginController {
 		oauthToken = naverLoginService.getAccessToken(session, code, state);
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginService.getUserProfile(oauthToken); // String형식의 json데이터
-	//	System.out.println(apiResult);
-		/**
-		 * apiResult json 구조 {"resultcode":"00", "message":"success",
-		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-		 **/
+
 		// 2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);

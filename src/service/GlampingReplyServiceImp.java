@@ -30,7 +30,6 @@ public class GlampingReplyServiceImp implements GlampingReplyService{
 		
 	}
 
-
 	@Override
 	public List<Map<String, Object>> selectReplyList(int gl_num) {
 		List<Map<String, Object>> replyList = new ArrayList<Map<String,Object>>();
@@ -38,7 +37,6 @@ public class GlampingReplyServiceImp implements GlampingReplyService{
 		
 		return replyList;
 	}
-
 
 	@Override
 	public boolean deleteReply(Glamping_board_reply glampingBoardReply) {
@@ -48,8 +46,7 @@ public class GlampingReplyServiceImp implements GlampingReplyService{
 			return false;
 			
 		}
-		
-		
+
 	}
 
 }

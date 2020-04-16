@@ -50,8 +50,7 @@ public class GlampingBoardReplyController {
 	@GetMapping(value="/getReplyList")
 	public ResponseEntity<List<Map<String, Object>>> getReplyList(@RequestParam int gl_num) {
 		List<Map<String, Object>> replyList =  glampingReplyService.selectReplyList(gl_num);
-		
-		// ObjectMapper mapper = new ObjectMapper();
+
 		 ResponseEntity<List<Map<String, Object>>> entity = null; 
 		 
 		 try {

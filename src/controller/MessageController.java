@@ -38,7 +38,7 @@ public class MessageController {
 		viewData = messageService.receiveMsg(m_num,page);
 		model.addAttribute("viewData", viewData);
 		return "message/myReceiveMessage";
-	}
+	}	//받은메시지 목록
 	
 	@RequestMapping(value="/send")
 	public String send(HttpSession session, @RequestParam(value="page", defaultValue = "1")int page, Model model) {
@@ -49,7 +49,8 @@ public class MessageController {
 
 		model.addAttribute("viewData", viewData);
 		return "message/mySendMessage";
-	}
+	} //보낸 메세지 목록
+	
 	@ResponseBody
 	@RequestMapping(value="/readCheck")
 	public String readCheck(@RequestParam int msg_num) {
@@ -59,7 +60,8 @@ public class MessageController {
 			
 			return "{\"result\": false}";
 		}
-	}
+	} // 메시지 읽음 확인
+	
 	@RequestMapping(value="/sendmsgForm")
 	public String sendmsgForm() {
 		return "message/sendMessage";
@@ -72,11 +74,8 @@ public class MessageController {
 			, @DestinationVariable(value="targetid")String targetid) {
 		
 		Map<String, Object> insertMessage = new HashMap<String, Object>();
-		System.out.println("message : "+message);
-		System.out.println("targetid : "+targetid);
 		//타겟 아이디는 닉네임 
 		int recv_M_num = messageService.nickCheck(targetid);
-		System.out.println("memberid : "+memberid);
 		
 		JSONParser parser = new JSONParser();
 		JSONObject jobject;
@@ -93,7 +92,6 @@ public class MessageController {
 			insertMessage.put("MSG_title", jobject.get("title"));
 			insertMessage.put("MSG_content", jobject.get("content"));
 			if(messageService.insertMessage(insertMessage)) {
-				System.out.println("메시지 추가");
 				return message;
 			}else {
 				
@@ -106,5 +104,5 @@ public class MessageController {
 			e.printStackTrace();
 		}
 		return message;
-	}
+	} //메시지 보내기
 }

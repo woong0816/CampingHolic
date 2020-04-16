@@ -173,7 +173,6 @@ public class BackCampingServiceImp implements BackCampingService{
 	            }
 	            
 	            String inputLine;
-	            System.out.println("스트링 빌더로 바꿈");
 	            StringBuffer response = new StringBuffer();
 	            while ((inputLine = br.readLine()) != null) {
 	                response.append(inputLine);

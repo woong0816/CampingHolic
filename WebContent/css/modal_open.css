@@ -35,7 +35,7 @@ background-color: #fefefe;
 margin: 15% auto; /* 15% from the top and centered */
 padding: 20px;
 border: 1px solid #888;
-width: 22%; /* Could be more or less, depending on screen size */                          
+width: 20%; /* Could be more or less, depending on screen size */                          
 }
         /* The Close Button */
 .close {
@@ -104,7 +104,14 @@ width: 1400px;
 text-align: center;
 margin: 0 auto;
 }
-.my_btn{margin-top: 18px;}
+.my_btn{
+margin-top: 18px;
+color: white;
+border: solid 1px #1f8dd6;
+background-color: #1f8dd6;
+width: 75px;
+height: 45px;
+}
 .in_li{margin: auto;}
 .category_ul{
 margin-top: 15px;
@@ -120,5 +127,10 @@ text-align: center;
 	list-style-type: none;
 	display: inline-block;
 }
-
-      
+#btn1 #btn2{
+	color: white;
+    border: solid 1px #1f8dd6;
+    background-color: #1f8dd6;
+    width: 75px;
+    height: 30px;	
+}

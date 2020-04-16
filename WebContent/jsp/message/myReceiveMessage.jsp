@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${contextPath}/css/message.css">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
@@ -108,14 +109,14 @@
 			<div class="page_number">
 				<div>
 					<br>
-						<div class="page_n_menu">
+						<div class="paging">
 							<c:if test="${viewData.startPage !=1 }">
-								<a href = "received?page=1
+								<a class="direction fisrt"  href = "received?page=1
 									<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 									<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 									<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 								">&lt; 처음</a>
-								<a href = "received?page=${viewData.startPage-1}
+								<a class="direction prev" href = "received?page=${viewData.startPage-1}
 									<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 									<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 									<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
@@ -124,7 +125,7 @@
 							<c:forEach var = "pageNum" begin="${viewData.startPage}" end="${viewData.endPage < viewData.pageTotalCount ? viewData.endPage : viewData.pageTotalCount}">
 								<c:choose>
 									<c:when test="${pageNum == viewData.currentPage}">
-										<span class="current">${pageNum}</span>
+										<strong><span class="current">${pageNum}</span></strong>
 									</c:when>
 									<c:otherwise>
 										<a href="received?page=${pageNum}
@@ -136,12 +137,12 @@
 								</c:choose>
 							</c:forEach>
 							<c:if test = "${viewData.endPage < viewData.pageTotalCount}">
-								<a href = "received?page=${viewData.endPage+1}
+								<a class="direction next" href = "received?page=${viewData.endPage+1}
 									<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 									<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 									<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 								">다음 &gt;</a>
-								<a href = "received?page=${viewData.pageTotalCount}
+								<a class="direction last" href = "received?page=${viewData.pageTotalCount}
 									<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 									<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 									<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>

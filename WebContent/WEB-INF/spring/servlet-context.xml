@@ -32,7 +32,7 @@
 		<websocket:simple-broker prefix="/message/topic"/>
 	</websocket:message-broker>
 	
-	<mvc:resources mapping="/CampingHolic/*" location="file:///D:/server/image/data/"/>
+	
 	 
 	 <mvc:interceptors>
 		<mvc:interceptor>

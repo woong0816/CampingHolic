@@ -66,7 +66,6 @@ public class BackCampingController {
 		viewData = backCampingService.selectList(param,pageNum,filter);
 		
 		model.addAttribute("viewData", viewData);
-		//System.out.println(viewData);
 		
 		return "backCamping/backCamping_mainView";
 	}
@@ -91,7 +90,7 @@ public class BackCampingController {
 			model.addAttribute("msg", "수정실패했습니다.");
 		}
 
-		return "backCamping/backCamping_main";
+		return "result";
 	}//게시글 작성
 	
 	@GetMapping("/backCampingBoardView")
@@ -179,10 +178,8 @@ public class BackCampingController {
 		String fileName = today + "-" + uuid + "_" + multipartFile.getOriginalFilename();
 		String fullName = UPLOADIMGPATH + fileName;
 
-		//System.out.println(fullName);
 
-		File file = new File(fullName); // System.out.println(webappRoot + fullName);
-
+		File file = new File(fullName); 
 		multipartFile.transferTo(file);
 		BufferedImage bi = ImageIO.read(file);
 
@@ -196,22 +193,16 @@ public class BackCampingController {
 		resultMap.put("fileName", fileName);
 		resultMap.put("imgWidth", bi.getWidth());
 		resultMap.put("imgHeight", bi.getHeight());
-
-		//System.out.println(resultMap);
-
+		
 		return resultMap;
 
 	}
 	@ResponseBody
 	@PostMapping(value="/addressSearch")
 	public Map<String, List<Map<String, Object>>> addressSearch(String addressVal,@RequestParam(defaultValue = "1")int pageNum){
-		//System.out.println(addressVal);
 		List<Map<String, Object>> addressList =  backCampingService.SearchBackCampingInformation(addressVal,pageNum);
-		//System.out.println(addressList.get(0));
 		Map<String, List<Map<String, Object>>> mapList = new HashMap<String, List<Map<String, Object>>>();
 		mapList.put("addressList", addressList);
-		//System.out.println(addressList);
-		//System.out.println(mapList);
 		return mapList;
 	}
 	

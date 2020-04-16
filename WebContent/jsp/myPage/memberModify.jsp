@@ -7,7 +7,10 @@
 <head>
 
 <style type="text/css">
-.container{ text-align: center;}
+.container{ text-align: center;
+margin-top: 73px;
+    margin-bottom: 73px;
+}
 </style>
 
 <script
@@ -57,10 +60,10 @@ $(function(){
 	<header>
 		<%@include file="../CampingHolic_header.jsp" %>
 	</header> 		
-<div class="container">
 		<div style="text-align: center;">
 			<img src="${contextPath}/img/main_img.jpg" style="width: 1880px; height:500px;"></img>
 		</div>
+<div class="container">
 	<div id=myPageFrm>
 		<h3>회원 정보 수정입니다</h3>
 			<form action="../member/memberModify" method="post" id="ModifyForm">

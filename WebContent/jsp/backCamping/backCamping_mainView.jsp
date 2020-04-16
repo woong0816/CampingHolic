@@ -11,7 +11,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑홀릭-백패킹</title>
+<style type="text/css">
+.order{
+color: white;
+    width: 88px;
+    border: solid 1px #1f8dd6;
+    background-color: #1f8dd6;
+    height: 35px;
+}
+</style>
+
  <script type="text/javascript">
 $(function(){
 		var memberNum = <%=session.getAttribute("memberNum")%>
@@ -86,15 +96,15 @@ $(function(){
 		 <div class="page_number">
 			<div>
 				<br>
-					<div class="page_n_menu">
+					<div class="paging">
 						<c:if test="${viewData.startPage !=1 }">
-							<a href = "backCamping_main?page=1"
+							<a class="direction fisrt" href = "backCamping_main?page=1"
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 							
 							>&lt; 처음</a>
-							<a href = "backCamping_main?page=${viewData.startPage-1}">&lt; 이전</a>
+							<a class="direction prev" href = "backCamping_main?page=${viewData.startPage-1}">&lt; 이전</a>
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
@@ -102,7 +112,7 @@ $(function(){
 						<c:forEach var = "pageNum" begin="${viewData.startPage}" end="${viewData.endPage < viewData.pageTotalCount ? viewData.endPage : viewData.pageTotalCount}">
 							<c:choose>
 								<c:when test="${pageNum == viewData.currentPage}">
-									<span class="current">${pageNum}</span>
+									<strong><span class="current">${pageNum}</span></strong>
 								</c:when>
 								<c:otherwise>
 									<a href="backCamping_main?page=${pageNum}"
@@ -114,13 +124,13 @@ $(function(){
 							</c:choose>
 						</c:forEach>
 						<c:if test = "${viewData.endPage < viewData.pageTotalCount}">
-							<a href = "backCamping_main?page=${viewData.endPage+1}
+							<a class="direction next" href = "backCamping_main?page=${viewData.endPage+1}
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>
 							
 							">다음 &gt;</a>
-							<a href = "backCamping_main?page=${viewData.pageTotalCount}
+							<a class="direction last" href = "backCamping_main?page=${viewData.pageTotalCount}
 								<c:if test="${viewData.type != null}">&type=${viewData.type}</c:if>
 								<c:if test="${viewData.keyword != null}">&keyword=${viewData.keyword}</c:if>
 								<c:if test="${viewData.filter!=null}">&filter=${viewData.filter}</c:if>

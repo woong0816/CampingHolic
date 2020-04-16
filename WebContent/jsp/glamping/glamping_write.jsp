@@ -10,7 +10,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ebde98a774affbd3e0e745441dd9db87&libraries=services"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑홀릭-글램핑</title>
 <link rel="stylesheet" type="text/css" href="${contextPath}/css/board_write.css">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
@@ -51,6 +51,25 @@ $(function(){
 		    event.preventDefault();
 		  };
 		});
+	
+	$("#glamping_write").submit(function(){		
+		var title = $("#gl_title").val();
+		var content = $("#summernote").val();
+		var adress = $("#gl_address").val();
+		
+		if(title==""){
+			alert("제목을 입력해주세요");
+			return false;
+		}else if(content==""){
+			alert("내용을 입력해주세요");
+			return false;
+		}else if(adress==""){
+			alert("장소를 입력해주세요");
+			return false;
+		}
+
+	});
+	
 	
 })
 	function sendFile(file , editer, welEditable){
@@ -99,9 +118,9 @@ $(function(){
 </script>
 	
 		
-		<div style="background-image: url(../img/MainImg.jpg); background-size: cover; width: 100%; height: 200px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
+		<div style="background-image: url(../img/glamping_main.jpg); background-size: cover; width: 100%; height: 500px; top:0; margin: auto; float: inherit; overflow: auto;"> </div>
 		<div class="container">
-		<form action="glampingWrite" method="post">
+		<form action="glampingWrite" id="glamping_write" method="post">
 			<br>
 				<div class="title_box">
 					<input type="text" class="title" name="gl_title" id="gl_title" value="글램핑 제목을 입력해주세요" onfocus="this.value=''; return true;">
@@ -225,7 +244,7 @@ $(function(){
 
 			            itemEl.onclick =  function () {
 			         //여기서 좌표 중심으로 하고 이미지 변경 
-			            	$("#ac_address").val(title);
+			            	$("#gl_address").val(title);
 			            	 var geocoder = new kakao.maps.services.Geocoder();
 			            	// 주소로 좌표를 검색합니다
 			            	geocoder.addressSearch(title, function(result, status) {
@@ -372,9 +391,9 @@ $(function(){
 			
     </script>
 		<div class="under_btn">
-			<input type="submit" value="등록">&nbsp;&nbsp;
-			<input type="button" value="목록" onclick="location.href='glamping_main'"> &nbsp;&nbsp;
-			<input type="reset" value="다시작성">
+			<input class="order_button" type="submit" value="등록">&nbsp;&nbsp;
+			<input class="order_button" type="button" value="목록" onclick="location.href='glamping_main'"> &nbsp;&nbsp;
+			<input class="order_button" type="reset" value="다시작성">
 		</div>
 		</form>
 		
