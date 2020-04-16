@@ -139,10 +139,9 @@ public class MemberServiceImp implements MemberService{
 
 
 	@Override
-	public int snsInsert(Member member,String id) {
+	public int snsInsert(Member member) {
 		//여기서 소셜 로그인을 해야 함
 		if(memberDao.insertMember(member)>1) {
-			
 			return member.getM_num();
 		}else {
 			return member.getM_num();

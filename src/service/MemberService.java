@@ -15,7 +15,7 @@ public interface MemberService {
 	public Member selectOneMember(String email);
 	public boolean checkEmail(String email);
 	public boolean nickCheck(String nickName);
-	public int snsInsert(Member member,String id);
+	public int snsInsert(Member member);
 	public Member naverSelectId(String email);
 	public boolean selectOne(String m_num, String my_pass);
 	public Map<String, Object> memberInfo(String nickName);

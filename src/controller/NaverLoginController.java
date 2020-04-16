@@ -76,8 +76,11 @@ public class NaverLoginController {
 		Member member = new Member();
 		String nickname = (String)response_obj.get("nickname");
 		
+		System.out.println(response_obj.get("email"));
+		
 		String id = (String)response_obj.get("id");
 		if(memberService.naverSelectId((String)response_obj.get("email"))!=null) {
+			session.setAttribute("memberNum", memberService.naverSelectId((String)response_obj.get("email")).getM_num());
 			
 		}else {
 			member.setEmail((String)response_obj.get("email"));
@@ -85,11 +88,10 @@ public class NaverLoginController {
 			member.setGender((String)response_obj.get("gender"));
 			member.setName((String)response_obj.get("name"));
 			member.setNickName((String)response_obj.get("nickname"));
-			member.setNickName((String)response_obj.get("nickname"));
-			member.setPassword("1");
+			member.setPassword("1");	
+			session.setAttribute("memberNum", memberService.snsInsert(member));
 		}
 		session.setAttribute("nickName", nickname); // 세션 생성
-		session.setAttribute("memberNum", memberService.naverSelectId((String)response_obj.get("email")).getM_num());
 		model.addAttribute("result", apiResult);
 		model.addAttribute("url", "../main/mainView");
 		model.addAttribute("msg", "네이버 아이디로 로그인합니다");
