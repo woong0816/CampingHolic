@@ -379,7 +379,10 @@ $(function(){
 		</form>
 		
 		<br>
-</div>		
+</div>
+<footer>
+		<%@include file="../CampingHolic_footer.jsp" %>
+	</footer>		
 </body>
 
 </html>

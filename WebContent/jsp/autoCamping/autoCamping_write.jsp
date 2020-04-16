@@ -58,6 +58,10 @@ $(function(){
 		});		
 });
 
+
+
+
+
 	function sendFile(file,editer,welEditable){
 		 data = new FormData();
 		 data.append("file",file);
@@ -385,7 +389,9 @@ $(function(){
 		
 		<br>
 </div>
-	
+<footer>
+		<%@include file="../CampingHolic_footer.jsp" %>
+	</footer>	
 	
 </body>
 </html>

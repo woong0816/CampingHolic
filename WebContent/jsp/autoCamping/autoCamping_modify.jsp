@@ -366,6 +366,8 @@ $(document).ready(function(){
 		</div>
 	</form>
 </div>
-
+<footer>
+		<%@include file="../CampingHolic_footer.jsp" %>
+	</footer>
 </body>
 </html>

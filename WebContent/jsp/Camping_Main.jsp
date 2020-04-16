@@ -74,7 +74,7 @@ height: 31px;
 	<div id="container" style="margin: 0 auto; width:1400px;">
 	
 			<div id="box1">
-				<h2 id="category" style="float: left;">최근 등록된 오토캠핑 후기 </h2>
+				<h2 id="category2" style="float: left;">최근 등록된 오토캠핑 후기 </h2>
 			</div>
 		<hr class="hr">
 				<div class="more_view"><span class="view" onclick="location.href='../autoCamping/autoCamping_main'">더보기</span></div>
@@ -100,7 +100,7 @@ height: 31px;
 		<br><br>
 		
 			<div id="box1">
-				<h2 id="category" style="float: left;">최근 등록된 글램핑 후기 </h2>
+				<h2 id="category2" style="float: left;">최근 등록된 글램핑 후기 </h2>
 			</div>
 		<hr class="hr">
 			<div class="more_view"><span class="view" onclick="location.href='../glamping/glamping_main'">더보기</span></div>
@@ -127,7 +127,7 @@ height: 31px;
 		<br><br>
 	
 			<div id="box1">
-				<h2 id="category" style="float: left;">최근 등록된 백패킹 후기 </h2>
+				<h2 id="category2" style="float: left;">최근 등록된 백패킹 후기 </h2>
 			</div>
 		<hr class="hr">
 				<div class="more_view"><span class="view" onclick="location.href='../backCamping/backCamping_main'">더보기</span></div>
