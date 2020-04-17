@@ -258,7 +258,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	        action_properties: JSON.stringify({
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
-	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
+	                'og:image': '${contextPath}/img/main_img.jpg',
 	                'og:url': 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',

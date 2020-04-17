@@ -47,7 +47,7 @@ public class GlampingController {
 	GlampingLikeService glampingLikeServie;
 	
 	private static final String FILE2 = "file";
-	private static final String UPLOADIMGPATH = "D:/server/image/data/";
+	private static final String UPLOADIMGPATH = "/home/ubuntu/download/imgdata/";
 
 	@RequestMapping(value = "/glamping_main")	 
 	public String glampingMain(Model model, @RequestParam(value="page" , required=false, defaultValue="1")int pageNum,

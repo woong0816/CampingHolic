@@ -47,7 +47,7 @@ public class BackCampingController {
 	BackCampingLikeService backCampingLikeService;
 	
 	private static final String FILE2 = "file";
-	private static final String UPLOADIMGPATH = "D:/server/image/data/";
+	private static final String UPLOADIMGPATH = "/home/ubuntu/download/imgdata/";
 
 	
 	@RequestMapping("/backCamping_main")

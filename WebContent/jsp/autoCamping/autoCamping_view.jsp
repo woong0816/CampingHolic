@@ -236,11 +236,11 @@
 	        action_type: 'og.shares',
 	        action_properties: JSON.stringify({
 	            object: {       
-	                'og:title': '캠핑을 떠나보자',
-	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
 	                'og:url': 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
+	                'og:title': '캠핑을 떠나보자',
+	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
 	            }
 	        })
 	    });
