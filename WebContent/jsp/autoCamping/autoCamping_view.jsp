@@ -238,7 +238,7 @@
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
 	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
-	                'og:url': 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
+	                'og:url': 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
 	            }
@@ -256,8 +256,8 @@
 		      imageUrl: "https://file.okky.kr/images/1513127807083.jpg",
 		      
 		      link: {             
-		        mobileWebUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
-		        webUrl: 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}'
+		        mobileWebUrl: 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}',
+		        webUrl: 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}'
 		      }
 		    }
 		  });
@@ -267,7 +267,7 @@
 	function twitterUrl(){
 		
 		    var content = "[캠핑홀릭] "
-		    var link = 'http://13.125.237.170:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}';
+		    var link = 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${detailView.autoCampingBoard.AC_NUM}';
 		    var popOption = "width=370, height=518, resizable=no, scrollbars=no, status=no;";
 		    var wp = window.open("http://twitter.com/share?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(content), 'twitter', popOption);
 		    if (wp) {wp.focus();}    
