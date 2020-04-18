@@ -86,7 +86,7 @@ height: 31px;
 						<div class="title_dv">
 						<a onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'">${autoCampingMainList.AC_TITLE}</a>
 						</div>
-						<div><img src="${contextPath}/CampingHolic${autoCampingMainList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'"
+						<div><img src="/CampingHolic/imgUpload/${autoCampingMainList.ACI_IMGFILENAME}" onclick="location.href='../autoCamping/autoCampingView?ac_num=${autoCampingMainList.AC_NUM}'"
 						 class="a_img" style= "width: 300px; height:300px;"></div>
 						<span style="color: #DF0101;">♥</span><small id="like">좋아요${autoCampingMainList.LIKECOUNT}</small>
 						<div class="readCount_no"><span style="font-size:15px;">조회수&nbsp;</span>
@@ -113,7 +113,7 @@ height: 31px;
 						<div class="title_dv">
 						<a onclick="location.href='../glamping/glampingBoardView?gl_num=${glampingMainList.GL_NUM}'">${glampingMainList.GL_TITLE}</a>
 						</div>
-					    <div><img src="${contextPath}${glampingMainList.GLI_IMGFILENAME}" onclick="location.href='../glamping/glampingBoardView?gl_num=${glampingMainList.GL_NUM}'" 
+					    <div><img src="/CampingHolic/imgUpload/${glampingMainList.GLI_IMGFILENAME}" onclick="location.href='../glamping/glampingBoardView?gl_num=${glampingMainList.GL_NUM}'" 
 					    class="a_img" style= "width: 300px; height:300px;"></div>
 					    <span style="color: #DF0101;">♥</span><small id="like">좋아요${glampingMainList.LIKECOUNT}</small>
 						<div class="readCount_no"><span style="font-size:15px;">조회수&nbsp;</span>
@@ -138,7 +138,7 @@ height: 31px;
 						<div class="title_dv">
 						<a onclick="location.href='../backCamping/backCampingBoardView?bc_num=${backCampingMainList.BC_NUM}'">${backCampingMainList.BC_TITLE}</a>
 						</div>
-						<div><img src="${contextPath}${backCampingMainList.BCI_IMGFILENAME}" onclick="location.href='../backCamping/backCampingBoardView?bc_num=${backCampingMainList.BC_NUM}'" 
+						<div><img src="/CampingHolic/imgUpload/${backCampingMainList.BCI_IMGFILENAME}" onclick="location.href='../backCamping/backCampingBoardView?bc_num=${backCampingMainList.BC_NUM}'" 
 						class="a_img" style= "width:300px; height:300px;"></div>
 						<span style="color: #DF0101;">♥</span><small id="like">좋아요${backCampingMainList.LIKECOUNT}</small>
 						<div class="readCount_no"><span style="font-size:15px;">조회수&nbsp;</span>

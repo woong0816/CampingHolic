@@ -237,7 +237,7 @@ function facebookUrl(){
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
 	                'og:image': 'http://travel.chosun.com/site/data/img_dir/2017/06/30/2017063001239_0.jpg',
-	                'og:url': 'http://54.180.98.183:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}',
+	                'og:url': 'http://15.165.161.115:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
 	            }
@@ -256,8 +256,8 @@ function facebookUrl(){
 		      imageUrl: "https://file.okky.kr/images/1513127807083.jpg",
 		      
 		      link: {             
-		        mobileWebUrl: 'http://54.180.98.183:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}',
-		        webUrl: 'http://54.180.98.183:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}'
+		        mobileWebUrl: 'http://15.165.161.115:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}',
+		        webUrl: 'http://15.165.161.115:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}'
 		      }
 		    }
 		  });
@@ -268,7 +268,7 @@ function facebookUrl(){
 	function twitterUrl(){
 		
 		    var content = "[캠핑홀릭] "
-		    var link = 'http://54.180.98.183:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}';
+		    var link = 'http://15.165.161.115:8080/CampingHolic/backCamping/backCampingBoardView?bc_num='+'${detailView.backCampingBoard.BC_NUM}';
 		    var popOption = "width=370, height=518, resizable=no, scrollbars=no, status=no;";
 		    var wp = window.open("http://twitter.com/share?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(content), 'twitter', popOption);
 		    if (wp) {wp.focus();}    

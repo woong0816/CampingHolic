@@ -96,9 +96,9 @@ $(function(){
 					console.log("changeWidth -> " + changeWidth);
 					console.log("changeHeight -> " + changeHeight);
 					
-					var img = $("<img src='${contextPath}/upload/" + result.fileName+"' style='width: " + changeWidth + "px; height: " + changeHeight + "px;''>")[0];
+					var img = $("<img src='/CampingHolic/imgUpload/" + result.fileName+"' style='width: " + changeWidth + "px; height: " + changeHeight + "px;''>")[0];
 				} else {
-					var img = $("<img src='${contextPath}/upload/" + result.fileName+"'>")[0];
+					var img = $("<img src='/CampingHolic/imgUpload/" + result.fileName+"'>")[0];
 					
 				}
 				$summernote.summernote('insertNode', img);

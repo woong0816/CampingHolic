@@ -259,7 +259,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	            object: {       
 	                'og:title': '캠핑을 떠나보자',
 	                'og:image': '${contextPath}/img/main_img.jpg',
-	                'og:url': 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
+	                'og:url': 'http://15.165.161.115:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
 	                'og:description': '캠핑을 떠나보자',
 	            	'og:type' : 'article',
 	            }
@@ -278,8 +278,8 @@ request.setAttribute("contextPath", request.getContextPath());
 		      imageUrl: "https://file.okky.kr/images/1513127807083.jpg",
 		      
 		      link: {             
-		        mobileWebUrl: 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
-		        webUrl: 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}'
+		        mobileWebUrl: 'http://15.165.161.115:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}',
+		        webUrl: 'http://15.165.161.115:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}'
 		      }
 		    }
 		  });
@@ -290,7 +290,7 @@ request.setAttribute("contextPath", request.getContextPath());
 	function twitterUrl(){
 		
 		    var content = "[캠핑홀릭] "
-		    var link = 'http://54.180.98.183:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}';
+		    var link = 'http://15.165.161.115:8080/CampingHolic/autoCamping/autoCampingView?ac_num='+'${glampingView.glampingBoard.GL_NUM}';
 		    var popOption = "width=370, height=518, resizable=no, scrollbars=no, status=no;";
 		    var wp = window.open("http://twitter.com/share?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(content), 'twitter', popOption);
 		    if (wp) {wp.focus();}    
